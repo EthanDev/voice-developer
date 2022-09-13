@@ -1,33 +1,74 @@
-// This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
-// Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-// session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
+const handlers = require(`./handlers`);
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
+        return handlers.LaunchRequest(handlerInput);
     }
 };
-const HelloWorldIntentHandler = {
+
+const AnswerIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AnswerIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
+        return handlers.AnswerIntent(handlerInput);
     }
 };
+
+const BuyProductIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BuyProductIntent';
+    },
+    handle(handlerInput) {
+        return handlers.BuyProductIntent(handlerInput);
+    }
+};
+
+const NewsIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'NewsIntent';
+    },
+    handle(handlerInput) {
+        return handlers.NewsIntent(handlerInput);
+    }
+};
+
+const SessionResumedRequestHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionResumedRequest'
+    },
+    handle(handlerInput) {
+        return handlers.SessionResumedRequest(handlerInput);
+    }
+};
+
+const SoundEffectIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SoundEffectIntent';
+    },
+    handle(handlerInput) {
+        return handlers.SoundEffectIntent(handlerInput);
+    }
+};
+
+const SpeechconIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SpeechconIntent';
+    },
+    handle(handlerInput) {
+        return handlers.SpeechconIntent(handlerInput);
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -93,7 +134,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+        const speakOutput = `Jeff, I had trouble doing what you asked. Please try again.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -108,9 +149,14 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
+        NewsIntentHandler,
+        AnswerIntentHandler,
+        SpeechconIntentHandler,
+        SoundEffectIntentHandler,
+        BuyProductIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
+        SessionResumedRequestHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
         ) 
