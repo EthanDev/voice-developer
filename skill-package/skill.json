@@ -22,10 +22,32 @@
       "custom": {
         "endpoint": {
           "uri": "arn:aws:lambda:us-east-1:679180307287:function:ask-voice-developer-default-default-1661433580552"
-        }
+        },
+        "interfaces": [
+          {
+            "type": "ALEXA_PRESENTATION_APL"
+          },
+          {
+            "type": "CAN_FULFILL_INTENT_REQUEST"
+          }
+        ]
       }
     },
     "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "alexa::devices:all:address:full:read"
+      },
+      {
+        "name": "alexa::household:lists:read"
+      },
+      {
+        "name": "alexa::household:lists:write"
+      },
+      {
+        "name": "alexa::alerts:reminders:skill:readwrite"
+      }
+    ],
     "privacyAndCompliance": {
       "shoppingKit": {
         "isShoppingActionsEnabled": true

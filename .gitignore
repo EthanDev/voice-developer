@@ -2,3 +2,9 @@ node_modules/
 package-lock.json
 .DS_Store
 lambda/data/keys.js
+.ask/
+.ask/lambda/build.zip
+.ask/lambda/data/index.js
+.ask/lambda/handlers/index.js
+.ask/lambda/index.js
+.ask/ask-states.json
