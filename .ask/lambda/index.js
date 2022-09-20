@@ -49,6 +49,16 @@ const SessionResumedRequestHandler = {
     }
 };
 
+const SoundEffectIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SoundEffectIntent';
+    },
+    handle(handlerInput) {
+        return handlers.SoundEffectIntent(handlerInput);
+    }
+};
+
 const SpeechconIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -142,6 +152,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         NewsIntentHandler,
         AnswerIntentHandler,
         SpeechconIntentHandler,
+        SoundEffectIntentHandler,
         BuyProductIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,

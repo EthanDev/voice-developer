@@ -3,6 +3,7 @@ const BuyProductIntent = require("./BuyProductIntent");
 const LaunchRequest = require("./LaunchRequest");
 const NewsIntent = require("./NewsIntent");
 const SessionResumedRequest = require("./SessionResumedRequest");
+const SoundEffectIntent = require("./SoundEffectIntent");
 const SpeechconIntent = require("./SpeechconIntent");
 
 
@@ -12,5 +13,6 @@ module.exports = {
     LaunchRequest,
     NewsIntent,
     SessionResumedRequest,
+    SoundEffectIntent,
     SpeechconIntent
 };
