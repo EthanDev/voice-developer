@@ -3,7 +3,7 @@ const data = require("../data");
 const fetch = require("node-fetch");
 
 async function SoundEffectIntent(handlerInput) {
-
+    //TODO: Re-scrape the entire sound effects database to include name, folder structure, and category name.
     var soundEffectSpokenWords = helper.getSpokenWords(handlerInput, "soundeffect");
     var soundEffectResolvedWords = helper.getResolvedWords(handlerInput, "soundeffect");
 
@@ -20,7 +20,7 @@ async function SoundEffectIntent(handlerInput) {
     }
     else if (soundEffectResolvedWords.length > 0) {
         soundEffect = soundEffectResolvedWords[0].value.name;
-        speakOutput = `<audio src="soundbank://soundlibrary/${soundEffect.Category}/${soundEffect.Name}"/>`;
+        speakOutput = `<audio src='soundbank://soundlibrary/${soundEffect}'/>`;
     }
 
     return handlerInput.responseBuilder
