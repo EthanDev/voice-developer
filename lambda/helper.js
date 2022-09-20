@@ -52,6 +52,14 @@ function setAction(handlerInput, action) {
           return true;
         return false;
       }
+
+      var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+      function getRandomTwoCharacterCode() {
+        var char1 = getRandomItem(characters).toString();
+        var char2 = getRandomItem(characters).toString();
+        return char1 + "" + char2;
+      }
       
       function getRandomItem(items) {
         var random = getRandom(0, items.length - 1);
@@ -166,6 +174,7 @@ function setAction(handlerInput, action) {
       getSlotAudio,
       getSlotSpeech,
       getSpokenWords,
+      getRandomTwoCharacterCode,
       getResolvedWords,
       getRandomItem,
       isEntitled,
