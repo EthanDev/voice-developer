@@ -176,6 +176,7 @@ function setAction(handlerInput, action) {
       getSpokenWords,
       getRandomTwoCharacterCode,
       getResolvedWords,
+      getRandom,
       getRandomItem,
       isEntitled,
       putRepeatData,
