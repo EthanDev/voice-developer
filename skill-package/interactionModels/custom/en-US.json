@@ -89,8 +89,13 @@
                     "samples": [
                         "give me a {soundeffect} sound effect",
                         "play a {soundeffect}",
+                        "play {soundeffect}",
                         "let me hear a {soundeffect}"
                     ]
+                },
+                {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": []
                 }
             ],
             "types": [

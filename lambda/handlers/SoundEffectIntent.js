@@ -11,6 +11,7 @@ async function SoundEffectIntent(handlerInput) {
     var SoundEffectCardExample = "";
     var SoundEffectCardTitle = "";
     var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));
+    soundEffectCount = 0;
 
     //IF WE DIDN'T RESOLVE ANY WORDS, THEN GIVE THE USER A RANDOM SOUND EFFECT. (THIS IS ALSO TRUE IF THEY SAY "Give me a sound effect.")
     if (soundEffectResolvedWords === undefined) {
@@ -28,6 +29,7 @@ async function SoundEffectIntent(handlerInput) {
         speakOutput = speakOutput.replace("QUERY", soundEffectSpokenWords)
         speakOutput = speakOutput.replace("SOUNDEFFECT", soundEffectSSML);
         speakOutput = speakOutput.replace("TITLE", soundEffect.Title);
+        soundEffectCount += 1;
     }
     //IF WE DID RESOLVE SOMETHING
     else if (soundEffectResolvedWords.length > 0) {
@@ -53,6 +55,7 @@ async function SoundEffectIntent(handlerInput) {
                 speakOutput += (await data.getRandomSpeech("SOUNDEFFECT", helper.getLocale(handlerInput))).replace("TITLE", specificSoundEffect[i].fields.Title).replace("SOUNDEFFECT", "<audio src='soundbank://soundlibrary/" + specificSoundEffect[i].fields.Name + "' />");
                 SoundEffectCardExample = specificSoundEffect[i].fields.Name;
                 SoundEffectCardTitle = specificSoundEffect[i].fields.Title;
+                soundEffectCount += 1;
             }
         }
         //IF WE DON'T FIND ANY DATABASE MATCHES, THEN JUST USE THE ONES THAT WERE RESOLVED. THIS IS MOST LIKELY TO HAPPEN WHEN WE HAVE ADDED CUSTOM SYNONYMS TO THE DATABASE.
@@ -65,9 +68,14 @@ async function SoundEffectIntent(handlerInput) {
                 speakOutput += (await data.getRandomSpeech("SOUNDEFFECT", helper.getLocale(handlerInput))).replace("TITLE", soundEffectResolvedWords[i].value.name).replace("SOUNDEFFECT", "<audio src='soundbank://soundlibrary/" + soundEffectResolvedWords[i].value.id + "' />");
                 SoundEffectCardExample = soundEffectResolvedWords[i].value.id;
                 SoundEffectCardTitle = soundEffectResolvedWords[i].value.name;
+                soundEffectCount += 1;
             }
         }
     }
+
+    var achievementSpeech = await data.updateUserSoundEffectCount(handlerInput, soundEffectCount);
+    speakOutput += achievementSpeech;
+    //speakOutput += await achievement.checkSoundEffectAchievements(soundEffectCountResult);
 
     return handlerInput.responseBuilder
         .speak(`${speakOutput}<break time='.5s'/>${actionQuery}`)

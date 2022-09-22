@@ -1,5 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const handlers = require(`./handlers`);
+const data = require(`./data`);
+const helper = require("./helper");
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -37,6 +39,16 @@ const NewsIntentHandler = {
     },
     handle(handlerInput) {
         return handlers.NewsIntent(handlerInput);
+    }
+};
+
+const RepeatIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.RepeatIntent';
+    },
+    handle(handlerInput) {
+        return handlers.RepeatIntent(handlerInput);
     }
 };
 
@@ -143,6 +155,27 @@ const ErrorHandler = {
     }
 };
 
+const RequestLog = {
+    async process(handlerInput) {
+      //console.log(`REQUEST ENVELOPE ${JSON.stringify(handlerInput.requestEnvelope)}`);
+      const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+      const userRecord = await data.getUserRecord(handlerInput);
+      sessionAttributes.user = userRecord.fields;
+      //sessionAttributes.isError = false;
+    },
+  };
+
+const ResponseLog = {
+    process(handlerInput) {
+      console.log(
+        `RESPONSE BUILDER = ${JSON.stringify(
+          handlerInput.responseBuilder.getResponse()
+        )}`
+      );
+      helper.putRepeatData(handlerInput);
+    },
+  };
+
 // The SkillBuilder acts as the entry point for your skill, routing all request and response
 // payloads to the handlers above. Make sure any new handlers or interceptors you've
 // defined are included below. The order matters - they're processed top to bottom.
@@ -155,12 +188,14 @@ exports.handler = Alexa.SkillBuilders.custom()
         SoundEffectIntentHandler,
         BuyProductIntentHandler,
         HelpIntentHandler,
+        RepeatIntentHandler,
         CancelAndStopIntentHandler,
         SessionResumedRequestHandler,
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
         ) 
-    .addErrorHandlers(
-        ErrorHandler,
-        )
+    .addErrorHandlers(ErrorHandler)
+    .addRequestInterceptors(RequestLog)
+    .addResponseInterceptors(ResponseLog)
+    .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
