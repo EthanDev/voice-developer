@@ -18,6 +18,9 @@ async function SpeechconIntent(handlerInput) {
         speakOutput = `<say-as interpret-as='interjection'>${speechcon}</say-as>`;
     }
 
+    var achievementSpeech = await data.updateUserSpeechconCount(handlerInput, 1);
+    speakOutput += achievementSpeech;
+
     return handlerInput.responseBuilder
         .speak(`${speakOutput}<break time='.5s'/>${actionQuery}`)
         .reprompt(actionQuery)
