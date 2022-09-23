@@ -1,4 +1,5 @@
 const awardSpecificAchievement = require("./awardSpecificAchievement");
+const checkIntentAchievements = require("./checkIntentAchievements");
 const checkSoundEffectAchievements = require("./checkSoundEffectAchievements");
 const checkSpeechconAchievements = require("./checkSpeechconAchievements");
 const getAnswer = require("./getAnswer");
@@ -13,6 +14,7 @@ const updateUserSpeechconCount = require("./updateUserSpeechconCount");
 
 module.exports = {
     awardSpecificAchievement,
+    checkIntentAchievements,
     checkSoundEffectAchievements,
     checkSpeechconAchievements,
     getAnswer,

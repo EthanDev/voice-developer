@@ -4,7 +4,6 @@ const fetch = require("node-fetch");
 const keys = require("./keys");
 
 function getUserRecord(handlerInput) {
-  console.log(`<=== airtable/getUserRecord.js ===>`);
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
   const userId = handlerInput.requestEnvelope.context.System.user.userId;
 
