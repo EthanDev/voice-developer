@@ -6,7 +6,7 @@ async function getSoundEffect(spokenWords, locale) {
     const spokenWordsArray = spokenWords.split(" ");
     var findQuery = "";
     for (var i=0;i<spokenWordsArray.length;i++) {
-        findQuery += `,FIND('${spokenWordsArray[i]}',LOWER(Title))`
+        findQuery += `,FIND('${spokenWordsArray[i]}',LOWER(AlexaSlotJSON))`
     }
     const url = `https://api.airtable.com/v0/${keys.airtable_base_data}/SoundEffect?api_key=${keys.airtable_api_key}&filterByFormula=AND(IsDisabled%3DFALSE()${findQuery})`;
     const options = {
