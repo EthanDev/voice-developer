@@ -4,23 +4,38 @@ const fetch = require("node-fetch");
 
 async function BuyProductIntent(handlerInput) {
 
-    let actionTask = {
-        type: 'Connections.StartConnection',
-        uri: 'connection://AMAZON.BuyShoppingProducts/1',
-        input: {
-            products : [
-               {
-                 asin : 'B07XJ8C8F5'
-               }
-            ]
-        },
-        token: 'PurchaseProductToken'
-    }
+    var spokenWords = helper.getSpokenWords(handlerInput, "product");
+    var productList = helper.getResolvedWords(handlerInput, "product");
+    var speakOutput = "";
+    var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));
+    var actionTask = {};
 
-    var speakOutput = "Sending product to Amazon";
+    if (productList != undefined) {
+        actionTask = {
+            type: 'Connections.StartConnection',
+            uri: 'connection://AMAZON.BuyShoppingProducts/1',
+            input: {
+                products : [
+                   {
+                     asin : productList[0].value.id
+                   }
+                ]
+            },
+            token: 'PurchaseProductToken'
+        }
+    
+        var speakOutput = "OK.";
+    }
+    else
+    {
+        speakOutput = `I'm sorry. We don't actually sell ${spokenWords}. You can ask for an Echo or Echo Show device to make a purchase.`;
+    }
+    
+    
 
     return handlerInput.responseBuilder
-        .speak(speakOutput)
+        .speak(`${speakOutput}`)
+        //.reprompt(actionQuery)
         .addDirective(actionTask)
         .getResponse();
 }

@@ -74,8 +74,13 @@
                         }
                     ],
                     "samples": [
+                        "get an {product} ",
+                        "order an {product}",
+                        "order a {product}",
+                        "buy a {product}",
                         "get a {product}",
-                        "buy an {product}"
+                        "buy an {product}",
+                        "buy {product}"
                     ]
                 },
                 {
@@ -90,7 +95,9 @@
                         "give me a {soundeffect} sound effect",
                         "play a {soundeffect}",
                         "play {soundeffect}",
-                        "let me hear a {soundeffect}"
+                        "let me hear a {soundeffect}",
+                        "play a sound effect",
+                        "give me a sound effect"
                     ]
                 },
                 {
@@ -527,10 +534,11 @@
                 {
                     "name": "product",
                     "values": [
-                        {"name": {"value": "echo show 15"}},
-                        {"name": {"value": "echo show"}},
-                        {"name": {"value": "echo dot"}},
-                        {"name": {"value": "echo"}}
+                        {"id": "B08MQLDFF6", "name": {"value": "echo show 15"}},
+                        {"id": "B07VHZ41L8", "name": {"value": "echo show 10"}},
+                        {"id": "B084DCJKSL", "name": {"value": "echo show 8"}},
+                        {"id": "B08KJN3333", "name": {"value": "echo show 5"}},
+                        {"id": "B07XJ8C8F5", "name": {"value": "echo dot"}}
                     ]
                 },
                 {

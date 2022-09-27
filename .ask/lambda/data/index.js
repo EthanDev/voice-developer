@@ -1,5 +1,7 @@
 const awardSpecificAchievement = require("./awardSpecificAchievement");
+const checkIntentAchievements = require("./checkIntentAchievements");
 const checkSoundEffectAchievements = require("./checkSoundEffectAchievements");
+const checkSpeechconAchievements = require("./checkSpeechconAchievements");
 const getAnswer = require("./getAnswer");
 const getNews = require("./getNews");
 const getRandomSoundEffect = require("./getRandomSoundEffect");
@@ -8,10 +10,13 @@ const getRandomSpeechcon = require("./getRandomSpeechcon");
 const getSoundEffect = require("./getSoundEffect");
 const getUserRecord = require("./getUserRecord");
 const updateUserSoundEffectCount = require("./updateUserSoundEffectCount");
+const updateUserSpeechconCount = require("./updateUserSpeechconCount");
 
 module.exports = {
     awardSpecificAchievement,
+    checkIntentAchievements,
     checkSoundEffectAchievements,
+    checkSpeechconAchievements,
     getAnswer,
     getNews,
     getRandomSoundEffect,
@@ -19,5 +24,6 @@ module.exports = {
     getRandomSpeechcon,
     getSoundEffect,
     getUserRecord,
-    updateUserSoundEffectCount
+    updateUserSoundEffectCount,
+    updateUserSpeechconCount
 };
