@@ -8,3 +8,9 @@ lambda/data/keys.js
 .ask/lambda/handlers/index.js
 .ask/lambda/index.js
 .ask/ask-states.json
+.ask/lambda/index.js
+.ask/lambda/handlers/SpeechconIntent.js
+.ask/lambda/handlers/index.js
+.ask/lambda/data/index.js
+.ask/lambda/build.zip
+.ask/ask-states.json
