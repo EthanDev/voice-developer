@@ -7,7 +7,7 @@ async function getRandomSoundEffect(searchCode, locale) {
   const options = {
     method: "GET",
   };
-  console.log(`FULL PATH ${url}`);
+  //console.log(`FULL PATH ${url}`);
 
   return fetch(url, options)
     .then((res) => res.json())

@@ -9,6 +9,8 @@ const getRandomSpeech = require("./getRandomSpeech");
 const getRandomSpeechcon = require("./getRandomSpeechcon");
 const getSoundEffect = require("./getSoundEffect");
 const getUserRecord = require("./getUserRecord");
+const saveMissedAnswer = require("./saveMissedAnswer");
+const saveUserAnswer = require("./saveUserAnswer");
 const updateUserSoundEffectCount = require("./updateUserSoundEffectCount");
 const updateUserSpeechconCount = require("./updateUserSpeechconCount");
 
@@ -24,6 +26,8 @@ module.exports = {
     getRandomSpeechcon,
     getSoundEffect,
     getUserRecord,
+    saveMissedAnswer,
+    saveUserAnswer,
     updateUserSoundEffectCount,
     updateUserSpeechconCount
 };
