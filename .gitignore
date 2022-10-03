@@ -14,3 +14,13 @@ lambda/data/keys.js
 .ask/lambda/data/index.js
 .ask/lambda/build.zip
 .ask/ask-states.json
+.ask/ask-states.json
+.ask/lambda/build.zip
+.ask/lambda/data/getNews.js
+.ask/lambda/data/getRandomSpeech.js
+.ask/lambda/data/getRandomSpeechcon.js
+.ask/lambda/data/index.js
+.ask/lambda/data/keys.js
+.ask/lambda/handlers/AnswerIntent.js
+.ask/lambda/handlers/BuyProductIntent.js
+.ask/lambda/handlers/SessionResumedRequest.js

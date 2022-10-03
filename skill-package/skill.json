@@ -1,23 +1,5 @@
 {
   "manifest": {
-    "publishingInformation": {
-      "locales": {
-        "en-US": {
-          "summary": "Sample Short Description",
-          "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
-          ],
-          "name": "voice-developer",
-          "description": "Sample Full Description"
-        }
-      },
-      "isAvailableWorldwide": true,
-      "testingInstructions": "Sample Testing Instructions.",
-      "category": "KNOWLEDGE_AND_TRIVIA",
-      "distributionCountries": []
-    },
     "apis": {
       "custom": {
         "endpoint": {
@@ -36,7 +18,19 @@
     "manifestVersion": "1.0",
     "permissions": [
       {
+        "name": "alexa::devices:all:notifications:write"
+      },
+      {
         "name": "alexa::devices:all:address:full:read"
+      },
+      {
+        "name": "alexa::profile:name:read"
+      },
+      {
+        "name": "alexa::profile:email:read"
+      },
+      {
+        "name": "alexa::profile:mobile_number:read"
       },
       {
         "name": "alexa::household:lists:read"
@@ -46,23 +40,53 @@
       },
       {
         "name": "alexa::alerts:reminders:skill:readwrite"
+      },
+      {
+        "name": "alexa::devices:all:geolocation:read"
+      },
+      {
+        "name": "alexa::person_id:read"
+      },
+      {
+        "name": "alexa::authenticate:2:mandatory"
+      },
+      {
+        "name": "alexa::alerts:timers:skill:readwrite"
       }
     ],
     "privacyAndCompliance": {
-      "shoppingKit": {
-        "isShoppingActionsEnabled": true
-      },
       "allowsPurchases": false,
-      "usesPersonalInfo": false,
+      "containsAds": false,
       "isChildDirected": false,
       "isExportCompliant": true,
-      "containsAds": false,
       "locales": {
         "en-US": {
           "privacyPolicyUrl": "http://www.myprivacypolicy.sampleskill.com",
           "termsOfUseUrl": "http://www.termsofuse.sampleskill.com"
         }
-      }
+      },
+      "shoppingKit": {
+        "isShoppingActionsEnabled": true
+      },
+      "usesPersonalInfo": false
+    },
+    "publishingInformation": {
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": [],
+      "isAvailableWorldwide": true,
+      "locales": {
+        "en-US": {
+          "description": "Sample Full Description",
+          "examplePhrases": [
+            "Alexa open hello world",
+            "hello",
+            "help"
+          ],
+          "name": "voice-developer",
+          "summary": "Sample Short Description"
+        }
+      },
+      "testingInstructions": "Sample Testing Instructions."
     }
   }
 }

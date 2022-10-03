@@ -17,14 +17,14 @@ async function BuyProductIntent(handlerInput) {
             input: {
                 products : [
                    {
-                     asin : productList[0].id
+                     asin : productList[0].value.id
                    }
                 ]
             },
             token: 'PurchaseProductToken'
         }
     
-        var speakOutput = "OK. Sending you to Amazon to complete your purchase.";
+        var speakOutput = "OK.";
     }
     else
     {
@@ -34,8 +34,8 @@ async function BuyProductIntent(handlerInput) {
     
 
     return handlerInput.responseBuilder
-        .speak(`${speakOutput} ${actionQuery}`)
-        .reprompt(actionQuery)
+        .speak(`${speakOutput}`)
+        //.reprompt(actionQuery)
         .addDirective(actionTask)
         .getResponse();
 }

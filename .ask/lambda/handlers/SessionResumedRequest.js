@@ -10,7 +10,7 @@ async function SessionResumedRequest(handlerInput) {
     const token = handlerInput.requestEnvelope.request.cause.token;
 
     let request = handlerInput.requestEnvelope.request;
-    let speechText = "Sorry, I had trouble doing what you asked. Please try again.";
+    let speakOutput = "Sorry, I had trouble doing what you asked. Please try again.";
     var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));
 
     if (request.cause) {
@@ -27,19 +27,19 @@ async function SessionResumedRequest(handlerInput) {
                 case '200':
                     if (typeof payload !== "undefined") {
                         if (payload.code === "AlexaShopping.RetryLaterError") {
-                            speechText =  "Looks like there was an issue. Let's get back to the skill.";
+                            speakOutput =  "Looks like there was an issue. Let's get back to the skill.";
                         } else {
-                            speechText = "I'm sorry, shopping indicated an issue while performing your request. Please try again later.";
+                            speakOutput = "I'm sorry, shopping indicated an issue while performing your request. Please try again later.";
                             console.info(`[INFO] Shopping Action had an issue while performing the request. ${payload.message}`);
                     }
                 } else if (token === "PurchaseProductToken") {
                     console.info(`[INFO] Shopping Action: Buy action was a success for ${token}.`);
-                    speechText = "Thank you for purchasing an Echo!";
+                    speakOutput = "Welcome back! ";
                 }
         break;
         default :
             console.info(`[INFO] Shopping Action: There was a problem performing the shopping action.`);
-            speechText = "There was a problem adding the item to your cart.";
+            speakOutput = "There was a problem adding the item to your cart.";
         }
     }
 
