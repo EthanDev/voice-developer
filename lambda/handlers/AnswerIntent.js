@@ -11,9 +11,23 @@ async function AnswerIntent(handlerInput) {
 
     if (resolvedAnswer === undefined) {
         //TODO: Should we also retrieve a random answer for them?
-        var missedAnswer = await data.saveMissedAnswer(spokenAnswer, handlerInput);
-        var answerApology = await data.getRandomSpeech("ANSWERAPOLOGY", helper.getLocale(handlerInput));
-        speakOutput = answerApology.replace("SPOKENWORDS", spokenAnswer);
+        //TODO: We should award achievements for hearing many answers.
+        if (spokenAnswer != undefined) {
+            var missedAnswer = await data.saveMissedAnswer(spokenAnswer, handlerInput);
+            var answerApology = await data.getRandomSpeech("ANSWERAPOLOGY", helper.getLocale(handlerInput));
+            speakOutput = answerApology.replace("SPOKENWORDS", spokenAnswer);
+        }
+        else {
+            var [answer, answerConfirmation] = await Promise.all([
+                data.getRandomAnswer(handlerInput),
+                data.getRandomSpeech("ANSWERRANDOM", helper.getLocale(handlerInput)),
+            ]);
+            //TODO: What do we do when they have heard ALL of the answers?
+            var answerName = answer.Name;
+            if (answer.Pronunciation != undefined) answerName = answer.Pronunciation;
+            speakOutput = `${answerConfirmation.replace("NAME", answerName)}. ${answer.VoiceResponse}`;
+            var userAnswerRecord = await data.saveUserAnswer(answer.RecordId, handlerInput)
+        }
     }
     else if (resolvedAnswer.length === 1) {
         //TODO: Mark this answer as one that the user has heard before.

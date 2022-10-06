@@ -52,7 +52,8 @@
                         "what is the link for {answer}",
                         "{answer}",
                         "what is {answer}",
-                        "tell me about {answer}"
+                        "tell me about {answer}",
+                        "teach me something new"
                     ]
                 },
                 {
