@@ -104,6 +104,25 @@ function setAction(handlerInput, action) {
           return handlerInput.requestEnvelope.request.intent.name;
         else return handlerInput.requestEnvelope.request.type;
       }
+
+function putEmotionSSML(handlerInput) {
+  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  const response = handlerInput.responseBuilder.getResponse();
+  const emotion = sessionAttributes.user.Emotion;
+  console.log(`EMOTION = ${emotion}`)
+  var speakOutput = "";
+  var repromptOutput = "";
+  if (response.outputSpeech && response.outputSpeech.ssml) {
+    speakOutput = response.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
+    speakOutput = `<amazon:emotion name="${emotion}" intensity="high">${speakOutput}</amazon:emotion>`
+  }
+  if (response.reprompt && response.reprompt.outputSpeech && response.reprompt.outputSpeech.ssml) {
+    repromptOutput = response.reprompt.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
+    repromptOutput = `<amazon:emotion name="${emotion}" intensity="high">${repromptOutput}</amazon:emotion>`
+  }
+
+  handlerInput.responseBuilder.speak(speakOutput).reprompt(repromptOutput).getResponse();
+}
       
       function putRepeatData(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
@@ -179,6 +198,7 @@ function setAction(handlerInput, action) {
       getRandom,
       getRandomItem,
       isEntitled,
+      putEmotionSSML,
       putRepeatData,
       setAction,
       supportsAPL,

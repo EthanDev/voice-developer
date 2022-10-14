@@ -113,6 +113,20 @@
                         "play office hours",
                         "show me the last office hours"
                     ]
+                },
+                {
+                    "name": "EmotionIntent",
+                    "slots": [
+                        {
+                            "name": "emotion",
+                            "type": "emotion"
+                        }
+                    ],
+                    "samples": [
+                        "change the emotion to {emotion}",
+                        "sound {emotion}",
+                        "set the emotion to {emotion}"
+                    ]
                 }
             ],
             "types": [
@@ -539,6 +553,14 @@
                         {"id": "recUN8FvhWbJd6Ot5", "name": { "value": "Voice Design","synonyms": []}},
                         {"id": "recuzKWcxGPfdB9cc", "name": { "value": "Webinars","synonyms": []}},
                         {"id": "rec7JXZVhsXNJ4gAo", "name": { "value": "Whisper Mode","synonyms": ["whisper"]}}
+                    ]
+                },
+                {
+                    "name": "emotion",
+                    "values": [
+                        {"name": {"value": "disappointed","synonyms": ["sad"]}},
+                        {"name": {"value": "excited","synonyms": ["hyped"]}},
+                        {"name": {"value": "normal","synonyms": ["off", "basic", "original"]}}
                     ]
                 },
                 {

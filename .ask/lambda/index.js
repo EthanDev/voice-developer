@@ -42,6 +42,16 @@ const CancelIntentHandler = {
     }
 };
 
+const EmotionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'EmotionIntent';
+    },
+    handle(handlerInput) {
+        return handlers.EmotionIntent(handlerInput);
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -170,12 +180,11 @@ const RequestLog = {
 
 const ResponseLog = {
     process(handlerInput) {
-      console.log(
-        `RESPONSE BUILDER = ${JSON.stringify(
-          handlerInput.responseBuilder.getResponse()
-        )}`
-      );
-      helper.putRepeatData(handlerInput);
+        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+        //console.log(`RESPONSE BUILDER = ${JSON.stringify(handlerInput.responseBuilder.getResponse())}`);
+        if (sessionAttributes.user.Emotion != undefined) helper.putEmotionSSML(handlerInput);
+        helper.putRepeatData(handlerInput);
+        
     },
   };
 
