@@ -105,11 +105,26 @@ function setAction(handlerInput, action) {
         else return handlerInput.requestEnvelope.request.type;
       }
 
+function putSSML(handlerInput, prefix, suffix) {
+  const response = handlerInput.responseBuilder.getResponse()
+
+  var speakOutput = "";
+  var repromptOutput = "";
+  if (response.outputSpeech && response.outputSpeech.ssml) {
+    speakOutput = response.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
+    speakOutput = `${prefix}${speakOutput}${suffix}`;
+  }
+  if (response.reprompt && response.reprompt.outputSpeech && response.reprompt.outputSpeech.ssml) {
+    repromptOutput = response.reprompt.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
+    repromptOutput = `${prefix}${repromptOutput}${suffix}`;
+  }
+
+  handlerInput.responseBuilder.speak(speakOutput).reprompt(repromptOutput).getResponse();
+}
+
 function putEmotionSSML(handlerInput) {
-  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
   const response = handlerInput.responseBuilder.getResponse();
-  const emotion = sessionAttributes.user.Emotion;
-  console.log(`EMOTION = ${emotion}`)
+
   var speakOutput = "";
   var repromptOutput = "";
   if (response.outputSpeech && response.outputSpeech.ssml) {
@@ -198,8 +213,8 @@ function putEmotionSSML(handlerInput) {
       getRandom,
       getRandomItem,
       isEntitled,
-      putEmotionSSML,
       putRepeatData,
+      putSSML,
       setAction,
       supportsAPL,
       wrapSpeechcon,

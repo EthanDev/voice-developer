@@ -7,6 +7,7 @@ async function updateUserEmotion(handlerInput, emotion) {
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     var airtable = new Airtable({apiKey: keys.airtable_api_key}).base(keys.airtable_base_data);
 
+    if (emotion === undefined) emotion = "";
     airtable('User').update([
     {
         "id": sessionAttributes.user.RecordId,

@@ -41,6 +41,19 @@ const CancelIntentHandler = {
         return handlers.StopIntent(handlerInput);
     }
 };
+//TODO: Build a parrot intent that uses the SearchQuery to allow a user to hear what they said with the SSML modification they've selected.
+//TODO: Add whisper mode (amazon:effect)
+//TODO: Add a break option that lets the user hear how long each of the break types are.
+
+const DomainIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'DomainIntent';
+    },
+    handle(handlerInput) {
+        return handlers.DomainIntent(handlerInput);
+    }
+};
 
 const EmotionIntentHandler = {
     canHandle(handlerInput) {
@@ -182,9 +195,9 @@ const ResponseLog = {
     process(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         //console.log(`RESPONSE BUILDER = ${JSON.stringify(handlerInput.responseBuilder.getResponse())}`);
-        if (sessionAttributes.user.Emotion != undefined) helper.putEmotionSSML(handlerInput);
+        if (sessionAttributes.user.Emotion != undefined) helper.putSSML(handlerInput, `<amazon:emotion name="${sessionAttributes.user.Emotion}" intensity="high">`, `</amazon:emotion>`);
+        if (sessionAttributes.user.Domain != undefined) helper.putSSML(handlerInput, `<amazon:domain name="${sessionAttributes.user.Domain}">`, `</amazon:domain>`);
         helper.putRepeatData(handlerInput);
-        
     },
   };
 
@@ -200,6 +213,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         SoundEffectIntentHandler,
         BuyProductIntentHandler,
         HelpIntentHandler,
+        DomainIntentHandler,
         EmotionIntentHandler,
         StopIntentHandler,
         RepeatIntentHandler,

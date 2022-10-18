@@ -124,8 +124,20 @@
                     ],
                     "samples": [
                         "change the emotion to {emotion}",
-                        "sound {emotion}",
                         "set the emotion to {emotion}"
+                    ]
+                },
+                {
+                    "name": "DomainIntent",
+                    "slots": [
+                        {
+                            "name": "domain",
+                            "type": "domain"
+                        }
+                    ],
+                    "samples": [
+                        "change the domain to {domain}",
+                        "set the domain to {domain}"
                     ]
                 }
             ],
@@ -553,6 +565,17 @@
                         {"id": "recUN8FvhWbJd6Ot5", "name": { "value": "Voice Design","synonyms": []}},
                         {"id": "recuzKWcxGPfdB9cc", "name": { "value": "Webinars","synonyms": []}},
                         {"id": "rec7JXZVhsXNJ4gAo", "name": { "value": "Whisper Mode","synonyms": ["whisper"]}}
+                    ]
+                },
+                {
+                    "name": "domain",
+                    "values": [
+                        {"name": {"value": "conversational","synonyms": ["friendly", "familiar"]}},
+                        {"name": {"value": "long-form","synonyms": ["podcast", "article", "blog"]}},
+                        {"name": {"value": "music","synonyms": ["video", "multimedia"]}},
+                        {"name": {"value": "fun","synonyms": ["animated", "animation"]}},
+                        {"name": {"value": "news","synonyms": ["newscaster", "broadcaster", "broadcast", "radio", "television"]}},
+                        {"name": {"value": "normal","synonyms": ["off", "basic", "original"]}}
                     ]
                 },
                 {
