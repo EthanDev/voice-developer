@@ -139,6 +139,21 @@
                         "change the domain to {domain}",
                         "set the domain to {domain}"
                     ]
+                },
+                {
+                    "name": "BreakIntent",
+                    "slots": [
+                        {
+                            "name": "break",
+                            "type": "break"
+                        }
+                    ],
+                    "samples": [
+                        "what is a {break} break",
+                        "{break} break",
+                        "let me hear a {break} break",
+                        "{break}"
+                    ]
                 }
             ],
             "types": [
@@ -584,6 +599,17 @@
                         {"name": {"value": "disappointed","synonyms": ["sad"]}},
                         {"name": {"value": "excited","synonyms": ["hyped"]}},
                         {"name": {"value": "normal","synonyms": ["off", "basic", "original"]}}
+                    ]
+                },
+                {
+                    "name": "break",
+                    "values": [
+                        {"name": {"value": "none","synonyms": ["zero"]}},
+                        {"name": {"value": "x-weak","synonyms": ["ex weak", "extra weak"]}},
+                        {"name": {"value": "weak","synonyms": ["week"]}},
+                        {"name": {"value": "medium","synonyms": ["normal", "standard"]}},
+                        {"name": {"value": "strong","synonyms": ["strong"]}},
+                        {"name": {"value": "x-strong","synonyms": ["ex strong", "extra strong"]}}
                     ]
                 },
                 {

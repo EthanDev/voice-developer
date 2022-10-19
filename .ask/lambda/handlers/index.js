@@ -1,4 +1,5 @@
 const AnswerIntent = require("./AnswerIntent");
+const BreakIntent = require("./BreakIntent");
 const BuyProductIntent = require("./BuyProductIntent");
 const DomainIntent = require("./DomainIntent");
 const EmotionIntent = require("./EmotionIntent");
@@ -14,6 +15,7 @@ const StopIntent = require("./StopIntent");
 
 module.exports = {
     AnswerIntent,
+    BreakIntent,
     BuyProductIntent,
     DomainIntent,
     EmotionIntent,

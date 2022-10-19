@@ -22,6 +22,16 @@ const AnswerIntentHandler = {
     }
 };
 
+const BreakIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'BreakIntent';
+    },
+    handle(handlerInput) {
+        return handlers.BreakIntent(handlerInput);
+    }
+};
+
 const BuyProductIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -41,6 +51,8 @@ const CancelIntentHandler = {
         return handlers.StopIntent(handlerInput);
     }
 };
+//TODO: Build a parrot intent that uses the SearchQuery to allow a user to hear what they said with the SSML modification they've selected.
+//TODO: Add whisper mode (amazon:effect)
 
 const DomainIntentHandler = {
     canHandle(handlerInput) {
@@ -211,6 +223,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         BuyProductIntentHandler,
         HelpIntentHandler,
         DomainIntentHandler,
+        BreakIntentHandler,
         EmotionIntentHandler,
         StopIntentHandler,
         RepeatIntentHandler,
