@@ -8,6 +8,7 @@ const LaunchRequest = require("./LaunchRequest");
 const NewsIntent = require("./NewsIntent");
 const RepeatIntent = require("./RepeatIntent");
 const SessionResumedRequest = require("./SessionResumedRequest");
+const SSMLIntent = require("./SSMLIntent");
 const SoundEffectIntent = require("./SoundEffectIntent");
 const SpeechconIntent = require("./SpeechconIntent");
 const StopIntent = require("./StopIntent");
@@ -24,6 +25,7 @@ module.exports = {
     NewsIntent,
     RepeatIntent,
     SessionResumedRequest,
+    SSMLIntent,
     SoundEffectIntent,
     SpeechconIntent,
     StopIntent

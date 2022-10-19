@@ -137,7 +137,10 @@
                     ],
                     "samples": [
                         "change the domain to {domain}",
-                        "set the domain to {domain}"
+                        "set the domain to {domain}",
+                        "change the domain",
+                        "domain",
+                        "set the domain"
                     ]
                 },
                 {
@@ -153,6 +156,17 @@
                         "{break} break",
                         "let me hear a {break} break",
                         "{break}"
+                    ]
+                },
+                {
+                    "name": "SSMLIntent",
+                    "samples": [
+                        "which SSML values are on",
+                        "which SSML effects are on",
+                        "what SSML value is on",
+                        "voice properties",
+                        "voice effects",
+                        "which voice values are on"
                     ]
                 }
             ],
@@ -570,7 +584,6 @@
                         {"id": "rec8L0JKAaMd0XHEu", "name": { "value": "Smart Home Skill API","synonyms": []}},
                         {"id": "recFq7Pa1dX8U99rH", "name": { "value": "Speechcons","synonyms": ["speechcon", "speech con"]}},
                         {"id": "recYds82pZzrqf3m5", "name": { "value": "Spoken Languages","synonyms": []}},
-                        {"id": "recGQeJCwDZaam8p7", "name": { "value": "SSML","synonyms": ["speech synthesis markup language"]}},
                         {"id": "recXeDCTcrVha8OBx", "name": { "value": "Starting a Skill","synonyms": []}},
                         {"id": "recbRzXOFIxzZJDKK", "name": { "value": "Text Messaging","synonyms": ["sms", "sns"]}},
                         {"id": "recceQ1mxsaNYGFI8", "name": { "value": "Toshimi Hatanaka","synonyms": ["Toshimi", "Hatanaka"]}},

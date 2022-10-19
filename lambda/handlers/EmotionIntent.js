@@ -7,6 +7,7 @@ async function EmotionIntent(handlerInput) {
     var resolvedEmotion = helper.getResolvedWords(handlerInput, "emotion");
     var speakOutput = "";
     var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));
+    var normal = await data.getRandomSpeech("NORMAL", helper.getLocale(handlerInput));
 
     if (resolvedEmotion === undefined) {
         if (spokenEmotion != undefined) {
@@ -17,14 +18,14 @@ async function EmotionIntent(handlerInput) {
     else {
         var emotion = resolvedEmotion[0].value.name;
         var emotionValue = emotion;
-        if (emotionValue === "normal") emotionValue = undefined;
+        if (emotionValue === normal) emotionValue = undefined;
         var [emotionConfirmation, userEmotion] = await Promise.all([
             data.getRandomSpeech("EMOTIONCONFIRMATION", helper.getLocale(handlerInput)),
             data.updateUserEmotion(handlerInput, emotionValue)
         ]);
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.Emotion = emotionValue;
-        if (emotion != "normal") {
+        if (emotion != normal) {
             speakOutput = `<amazon:emotion name="${emotion}" intensity="high">${emotionConfirmation.replace("EMOTION", emotion)}<break time='.5s'/>${actionQuery}</amazon:emotion>`;
         }
         else speakOutput = `${emotionConfirmation.replace("EMOTION", emotion)}<break time='.5s'/>${actionQuery}`;

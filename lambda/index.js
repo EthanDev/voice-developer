@@ -113,6 +113,16 @@ const SessionResumedRequestHandler = {
     }
 };
 
+const SSMLIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SSMLIntent';
+    },
+    handle(handlerInput) {
+        return handlers.SSMLIntent(handlerInput);
+    }
+};
+
 const SoundEffectIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -225,6 +235,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         DomainIntentHandler,
         BreakIntentHandler,
         EmotionIntentHandler,
+        SSMLIntentHandler,
         StopIntentHandler,
         RepeatIntentHandler,
         CancelIntentHandler,
