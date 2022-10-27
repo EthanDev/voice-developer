@@ -1,5 +1,6 @@
 const data = require("../data");
 const helper = require("../helper");
+const clocktest = require("../apl/clocktest.json");
 
 async function LaunchRequest(handlerInput) {
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
@@ -14,6 +15,7 @@ async function LaunchRequest(handlerInput) {
   return handlerInput.responseBuilder
     .speak(`${speakOutput} ${actionQuery}`)
     .reprompt(actionQuery)
+    .addDirective(clocktest)
     .getResponse();
 }
 

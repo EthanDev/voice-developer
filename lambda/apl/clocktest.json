@@ -1,0 +1,19 @@
+{
+    "type": "Alexa.Presentation.APLT.RenderDocument",
+    "token": "developer-provided-string",
+    "targetProfile": "FOUR_CHARACTER_CLOCK",
+    "document": {
+      "version": "1.0",
+      "type": "APLT",
+      "mainTemplate": {
+        "item": {
+          "type": "Text",
+          "id": "myTextId",
+          "textAlign": "right",
+          "text": "JEFF",
+          "overflow": "marquee"
+        }
+      }
+    },
+    "datasources": {}
+  }

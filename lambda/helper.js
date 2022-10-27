@@ -113,13 +113,15 @@ function putSSML(handlerInput, prefix, suffix) {
   if (response.outputSpeech && response.outputSpeech.ssml) {
     speakOutput = response.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
     speakOutput = `${prefix}${speakOutput}${suffix}`;
+    handlerInput.responseBuilder.speak(speakOutput);
   }
   if (response.reprompt && response.reprompt.outputSpeech && response.reprompt.outputSpeech.ssml) {
     repromptOutput = response.reprompt.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
     repromptOutput = `${prefix}${repromptOutput}${suffix}`;
+    handlerInput.responseBuilder.reprompt(repromptOutput)
   }
 
-  handlerInput.responseBuilder.speak(speakOutput).reprompt(repromptOutput).getResponse();
+  handlerInput.responseBuilder.getResponse();
 }
 
 function putEmotionSSML(handlerInput) {
