@@ -1,6 +1,33 @@
 {
     "type": "APL",
     "version": "1.4",
+    "onMount": [
+      {
+        "type": "Sequential",
+        "commands": [
+          {
+            "type": "SpeakItem",
+            "componentId": "NewsItem1"
+          },
+          {
+            "type": "SpeakItem",
+            "componentId": "NewsItem2"
+          },
+          {
+            "type": "SpeakItem",
+            "componentId": "NewsItem3"
+          },
+          {
+            "type": "SpeakItem",
+            "componentId": "NewsItem4"
+          },
+          {
+            "type": "SpeakItem",
+            "componentId": "NewsItem5"
+          }
+        ]
+      }
+    ],
     "import": [
       {
         "name": "alexa-layouts",
@@ -70,6 +97,7 @@
             },
             {
               "type": "Sequence",
+              "id": "NewsList",
               "width": "100%",
               "height": "80%",
               "data": "${itemList.items}",

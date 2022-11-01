@@ -11,6 +11,7 @@ async function NewsIntent(handlerInput) {
 
     if (newsItems === undefined) {
         //TODO: Let the user know that we don't currently have any news.  This should never happen, but weirder things have.
+        
     }
     else {
         var newsIntro = await data.getRandomSpeech("NEWSINTRO", helper.getLocale(handlerInput));
@@ -20,6 +21,7 @@ async function NewsIntent(handlerInput) {
             if (newsItems[i].fields.VoiceBody === undefined) newsItems[i].fields.VoiceBody = "";
             newsItemsForAPL[i] = {
                 itemType: "notification",
+                id: `NewsItem${i}`,
                 primaryText: newsItems[i].fields.VoiceBody,
                 secondaryText: newsItems[i].fields.VoiceHeadline,
                 tertiaryText: newsItems[i].fields.Link,
