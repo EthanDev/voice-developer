@@ -33,6 +33,7 @@ async function NewsIntent(handlerInput) {
     //TODO: Alex says change everything to a SpeakItem. Go figure out how to do that. :)
     //TODO: Play with the formatting of the AlexaTextListItem so that it looks better.  Remember that PrimaryText needs to be the longer content.
     //TODO: Handle the back button event.
+    //TODO: Use the OpenURL command to launch the URLs on tap. (Also, alow users to say something like "Launch #3");
     if (helper.supportsAPL(handlerInput)) {
         const newsList = require("../apl/newsList.json");
         var newsListDataSource = require("../apl/newsListDatasource.json");
