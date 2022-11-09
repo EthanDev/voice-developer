@@ -255,24 +255,6 @@
           "pathElement": "[a-zA-Z0-9\\-\\_\\.]{1,64}\\.(json|JSON)"
         }
       ]
-    },
-    {
-      "pathElement": "topics",
-      "children": [
-        {
-          "pathElement": "[a-zA-Z0-9\\-\\_\\.]{1,100}",
-          "children": [
-            {
-              "pathElement": "definition",
-              "children": [
-                {
-                  "pathElement": "[a-zA-Z0-9\\-\\_\\.]{1,100}.(json|JSON)"
-                }
-              ]
-            }
-          ]
-        }
-      ]
     }
   ]
 }

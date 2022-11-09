@@ -168,6 +168,22 @@
                         "voice effects",
                         "which voice values are on"
                     ]
+                },
+                {
+                    "name": "EmphasisIntent",
+                    "slots": [
+                        {
+                            "name": "emphasis",
+                            "type": "emphasis"
+                        }
+                    ],
+                    "samples": [
+                        "change the emphasis to {emphasis}",
+                        "set the emphasis to {emphasis}",
+                        "change the emphasis",
+                        "emphasis",
+                        "set the emphasis"
+                    ]
                 }
             ],
             "types": [
@@ -612,6 +628,15 @@
                         {"name": {"value": "disappointed","synonyms": ["sad"]}},
                         {"name": {"value": "excited","synonyms": ["hyped"]}},
                         {"name": {"value": "normal","synonyms": ["off", "basic", "original"]}}
+                    ]
+                },
+                {
+                    "name": "emphasis",
+                    "values": [
+                        {"name": {"value": "strong","synonyms": ["high"]}},
+                        {"name": {"value": "moderate","synonyms": ["medium"]}},
+                        {"name": {"value": "reduced","synonyms": ["low"]}},
+                        {"name": {"value": "normal","synonyms": ["original", "off"]}}
                     ]
                 },
                 {

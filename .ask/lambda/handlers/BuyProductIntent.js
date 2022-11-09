@@ -17,8 +17,13 @@ async function BuyProductIntent(handlerInput) {
             input: {
                 products : [
                    {
-                     asin : productList[0].value.id
-                   }
+                        asin : productList[0].value.id,
+                        attribution: {
+                            associateId: "thomasworthing-20",
+                            trackingId: "jeffblankenburg-20"
+                        }
+                   },
+                   
                 ]
             },
             token: 'PurchaseProductToken'
