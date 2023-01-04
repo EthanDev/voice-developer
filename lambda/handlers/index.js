@@ -3,6 +3,7 @@ const BreakIntent = require("./BreakIntent");
 const BuyProductIntent = require("./BuyProductIntent");
 const DomainIntent = require("./DomainIntent");
 const EmotionIntent = require("./EmotionIntent");
+const EmphasisIntent = require("./EmphasisIntent");
 const HelpIntent = require("./HelpIntent");
 const LaunchRequest = require("./LaunchRequest");
 const NewsIntent = require("./NewsIntent");
@@ -20,6 +21,7 @@ module.exports = {
     BuyProductIntent,
     DomainIntent,
     EmotionIntent,
+    EmphasisIntent,
     HelpIntent,
     LaunchRequest,
     NewsIntent,

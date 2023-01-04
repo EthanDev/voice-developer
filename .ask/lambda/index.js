@@ -74,6 +74,16 @@ const EmotionIntentHandler = {
     }
 };
 
+const EmphasisIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'EmphasisIntent';
+    },
+    handle(handlerInput) {
+        return handlers.EmphasisIntent(handlerInput);
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -214,8 +224,7 @@ const ResponseLog = {
     process(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         //console.log(`RESPONSE BUILDER = ${JSON.stringify(handlerInput.responseBuilder.getResponse())}`);
-        if (sessionAttributes.user.Emotion != undefined) helper.putSSML(handlerInput, `<amazon:emotion name="${sessionAttributes.user.Emotion}" intensity="high">`, `</amazon:emotion>`);
-        if (sessionAttributes.user.Domain != undefined) helper.putSSML(handlerInput, `<amazon:domain name="${sessionAttributes.user.Domain}">`, `</amazon:domain>`);
+        helper.applySSML(handlerInput);
         helper.putRepeatData(handlerInput);
     },
   };
@@ -235,6 +244,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         DomainIntentHandler,
         BreakIntentHandler,
         EmotionIntentHandler,
+        EmphasisIntentHandler,
         SSMLIntentHandler,
         StopIntentHandler,
         RepeatIntentHandler,

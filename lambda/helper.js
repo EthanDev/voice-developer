@@ -105,6 +105,13 @@ function setAction(handlerInput, action) {
         else return handlerInput.requestEnvelope.request.type;
       }
 
+function applySSML(handlerInput) {
+  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  if (sessionAttributes.user.Emotion != undefined) putSSML(handlerInput, `<amazon:emotion name="${sessionAttributes.user.Emotion}" intensity="high">`, `</amazon:emotion>`);
+  if (sessionAttributes.user.Domain != undefined) putSSML(handlerInput, `<amazon:domain name="${sessionAttributes.user.Domain}">`, `</amazon:domain>`);
+  if (sessionAttributes.user.Emphasis != undefined) putSSML(handlerInput, `<emphasis level="${sessionAttributes.user.Emphasis}">`, `</emphasis>`);
+}
+
 function putSSML(handlerInput, prefix, suffix) {
   const response = handlerInput.responseBuilder.getResponse()
 
@@ -123,24 +130,7 @@ function putSSML(handlerInput, prefix, suffix) {
 
   handlerInput.responseBuilder.getResponse();
 }
-
-function putEmotionSSML(handlerInput) {
-  const response = handlerInput.responseBuilder.getResponse();
-
-  var speakOutput = "";
-  var repromptOutput = "";
-  if (response.outputSpeech && response.outputSpeech.ssml) {
-    speakOutput = response.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
-    speakOutput = `<amazon:emotion name="${emotion}" intensity="high">${speakOutput}</amazon:emotion>`
-  }
-  if (response.reprompt && response.reprompt.outputSpeech && response.reprompt.outputSpeech.ssml) {
-    repromptOutput = response.reprompt.outputSpeech.ssml.replace("<speak>", "").replace("</speak>", "");
-    repromptOutput = `<amazon:emotion name="${emotion}" intensity="high">${repromptOutput}</amazon:emotion>`
-  }
-
-  handlerInput.responseBuilder.speak(speakOutput).reprompt(repromptOutput).getResponse();
-}
-      
+     
       function putRepeatData(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         const response = handlerInput.responseBuilder.getResponse();
@@ -203,6 +193,7 @@ function putEmotionSSML(handlerInput) {
     }
       
     module.exports = {
+      applySSML,
       changeVoice,
       getCardSpeech,
       getIntentName,

@@ -14,6 +14,7 @@ const saveMissedAnswer = require("./saveMissedAnswer");
 const saveUserAnswer = require("./saveUserAnswer");
 const updateUserDomain = require("./updateUserDomain");
 const updateUserEmotion = require("./updateUserEmotion");
+const updateUserEmphasis = require("./updateUserEmphasis");
 const updateUserSoundEffectCount = require("./updateUserSoundEffectCount");
 const updateUserSpeechconCount = require("./updateUserSpeechconCount");
 
@@ -22,8 +23,6 @@ module.exports = {
     checkIntentAchievements,
     checkSoundEffectAchievements,
     checkSpeechconAchievements,
-    updateUserDomain,
-    updateUserEmotion,
     getAnswer,
     getNews,
     getRandomAnswer,
@@ -34,6 +33,9 @@ module.exports = {
     getUserRecord,
     saveMissedAnswer,
     saveUserAnswer,
+    updateUserDomain,
+    updateUserEmotion,
+    updateUserEmphasis,
     updateUserSoundEffectCount,
     updateUserSpeechconCount
 };
