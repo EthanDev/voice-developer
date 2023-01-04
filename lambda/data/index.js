@@ -17,6 +17,7 @@ const updateUserEmotion = require("./updateUserEmotion");
 const updateUserEmphasis = require("./updateUserEmphasis");
 const updateUserSoundEffectCount = require("./updateUserSoundEffectCount");
 const updateUserSpeechconCount = require("./updateUserSpeechconCount");
+const updateUserVoice = require("./updateUserVoice");
 
 module.exports = {
     awardSpecificAchievement,
@@ -37,5 +38,6 @@ module.exports = {
     updateUserEmotion,
     updateUserEmphasis,
     updateUserSoundEffectCount,
-    updateUserSpeechconCount
+    updateUserSpeechconCount,
+    updateUserVoice
 };

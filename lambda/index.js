@@ -2,6 +2,7 @@ const Alexa = require('ask-sdk-core');
 const handlers = require(`./handlers`);
 const data = require(`./data`);
 const helper = require("./helper");
+//TODO: Create an Alexa Widget that shows the latest developer news.
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -103,6 +104,17 @@ const NewsIntentHandler = {
         return handlers.NewsIntent(handlerInput);
     }
 };
+
+const PollyVoiceIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'PollyVoiceIntent';
+    },
+    handle(handlerInput) {
+        return handlers.PollyVoiceIntent(handlerInput);
+    }
+};
+//TODO: Add the rest of the Polly voices to the Interaction Model.
 
 const RepeatIntentHandler = {
     canHandle(handlerInput) {
@@ -242,6 +254,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         BuyProductIntentHandler,
         HelpIntentHandler,
         DomainIntentHandler,
+        PollyVoiceIntentHandler,
         BreakIntentHandler,
         EmotionIntentHandler,
         EmphasisIntentHandler,

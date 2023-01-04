@@ -186,6 +186,24 @@
                         "emphasis",
                         "set the emphasis"
                     ]
+                },
+                {
+                    "name": "PollyVoiceIntent",
+                    "slots": [
+                        {
+                            "name": "voice",
+                            "type": "voice"
+                        }
+                    ],
+                    "samples": [
+                        "set the polly voice to {voice}",
+                        "set the voice to {voice}",
+                        "change the voice to {voice}",
+                        "use a different voice",
+                        "change voice",
+                        "change the voice",
+                        "change the polly voice"
+                    ]
                 }
             ],
             "types": [
@@ -650,6 +668,15 @@
                         {"name": {"value": "medium","synonyms": ["normal", "standard"]}},
                         {"name": {"value": "strong","synonyms": ["strong"]}},
                         {"name": {"value": "x-strong","synonyms": ["ex strong", "extra strong"]}}
+                    ]
+                },
+                {
+                    "name": "voice",
+                    "values": [
+                        {"name": {"value": "normal","synonyms": ["Alexa"]}},
+                        {"name": {"value": "Joanna"}},
+                        {"name": {"value": "Ivy"}},
+                        {"name": {"value": "Brian"}}
                     ]
                 },
                 {

@@ -110,6 +110,7 @@ function applySSML(handlerInput) {
   if (sessionAttributes.user.Emotion != undefined) putSSML(handlerInput, `<amazon:emotion name="${sessionAttributes.user.Emotion}" intensity="high">`, `</amazon:emotion>`);
   if (sessionAttributes.user.Domain != undefined) putSSML(handlerInput, `<amazon:domain name="${sessionAttributes.user.Domain}">`, `</amazon:domain>`);
   if (sessionAttributes.user.Emphasis != undefined) putSSML(handlerInput, `<emphasis level="${sessionAttributes.user.Emphasis}">`, `</emphasis>`);
+  if (sessionAttributes.user.PollyVoice != undefined) putSSML(handlerInput, `<voice name="${sessionAttributes.user.PollyVoice}">`, `</voice>`);
 }
 
 function putSSML(handlerInput, prefix, suffix) {
