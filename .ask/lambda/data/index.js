@@ -15,6 +15,7 @@ const saveUserAnswer = require("./saveUserAnswer");
 const updateUserDomain = require("./updateUserDomain");
 const updateUserEmotion = require("./updateUserEmotion");
 const updateUserEmphasis = require("./updateUserEmphasis");
+const updateUserProsodyRate = require("./updateUserProsodyRate");
 const updateUserSoundEffectCount = require("./updateUserSoundEffectCount");
 const updateUserSpeechconCount = require("./updateUserSpeechconCount");
 const updateUserVoice = require("./updateUserVoice");
@@ -37,6 +38,7 @@ module.exports = {
     updateUserDomain,
     updateUserEmotion,
     updateUserEmphasis,
+    updateUserProsodyRate,
     updateUserSoundEffectCount,
     updateUserSpeechconCount,
     updateUserVoice

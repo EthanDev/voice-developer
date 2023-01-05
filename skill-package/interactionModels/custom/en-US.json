@@ -204,6 +204,22 @@
                         "change the voice",
                         "change the polly voice"
                     ]
+                },
+                {
+                    "name": "ProsodyRateIntent",
+                    "slots": [
+                        {
+                            "name": "prosodyRate",
+                            "type": "prosodyRate"
+                        }
+                    ],
+                    "samples": [
+                        "set the rate to {prosodyRate}",
+                        "change the prosody rate to {prosodyRate}",
+                        "set the prosody rate to {prosodyRate}",
+                        "change the prosody rate",
+                        "set the prosody rate"
+                    ]
                 }
             ],
             "types": [
@@ -671,12 +687,53 @@
                     ]
                 },
                 {
+                    "name": "prosodyRate",
+                    "values": [
+                        {"name": {"value": "x-fast","synonyms": ["extra fast", "ex fast"]}},
+                        {"name": {"value": "fast"}},
+                        {"name": {"value": "medium","synonyms": ["normal"]}},
+                        {"name": {"value": "slow"}},
+                        {"name": {"value": "x-slow","synonyms": ["extra slow", "ex slow"]}}
+                    ]
+                },
+                {
                     "name": "voice",
                     "values": [
                         {"name": {"value": "normal","synonyms": ["Alexa"]}},
-                        {"name": {"value": "Joanna"}},
-                        {"name": {"value": "Ivy"}},
-                        {"name": {"value": "Brian"}}
+                        {"id": "recUCKwI0pUFNJZeS", "name": { "value": "Aditi","synonyms": []}},
+                        {"id": "reclSr5pMQhEsj4sG", "name": { "value": "Amy","synonyms": []}},
+                        {"id": "rec0gUkBEH5e0YyXC", "name": { "value": "Bianca","synonyms": []}},
+                        {"id": "recGW0aVaG5GrHM4h", "name": { "value": "Brian","synonyms": []}},
+                        {"id": "recu5MPkHQfPavzkl", "name": { "value": "Camila","synonyms": []}},
+                        {"id": "recMjxqUJqw7Y8BkE", "name": { "value": "Carla","synonyms": []}},
+                        {"id": "recRz2HlBzWOCkr7B", "name": { "value": "Céline","synonyms": []}},
+                        {"id": "recfyRyGThVA8WKTP", "name": { "value": "Chantal","synonyms": []}},
+                        {"id": "recAxQqejVc7uK6nl", "name": { "value": "Emma","synonyms": []}},
+                        {"id": "rechGXThoGHGA2ymy", "name": { "value": "Giorgio","synonyms": []}},
+                        {"id": "recRxeGhVJAzHLx1Y", "name": { "value": "Hans","synonyms": []}},
+                        {"id": "recBBboo4Jfo7aQtw", "name": { "value": "Ivy","synonyms": []}},
+                        {"id": "recFcTEIHD1UPO8An", "name": { "value": "Joanna","synonyms": []}},
+                        {"id": "recPBQGmSRoXwGjU3", "name": { "value": "Joey","synonyms": []}},
+                        {"id": "rec9kmwa6pCS2ef8D", "name": { "value": "Justin","synonyms": []}},
+                        {"id": "recW4MHpN6gEkxlrg", "name": { "value": "Kendra","synonyms": []}},
+                        {"id": "rec5K6DEfAkvBjLRq", "name": { "value": "Kimberly","synonyms": []}},
+                        {"id": "reczAIfIK98ZnrTFt", "name": { "value": "Léa","synonyms": []}},
+                        {"id": "recSR461YhkdGhivy", "name": { "value": "Lupe","synonyms": []}},
+                        {"id": "recPQcmacqGad4Faj", "name": { "value": "Marlene","synonyms": []}},
+                        {"id": "reckd3jZTjsczsSMJ", "name": { "value": "Mathieu","synonyms": []}},
+                        {"id": "recmKAqHGRcgLfSdp", "name": { "value": "Matthew","synonyms": []}},
+                        {"id": "recXq9UMXX4jwI4UB", "name": { "value": "Mia","synonyms": []}},
+                        {"id": "recyFCZVuq99Ip5rQ", "name": { "value": "Miguel","synonyms": []}},
+                        {"id": "recm0HJJ32F4IclWU", "name": { "value": "Mizuki","synonyms": []}},
+                        {"id": "recunEDbSBpSSG5vO", "name": { "value": "Nicole","synonyms": []}},
+                        {"id": "recTIfMA44JPPtDvI", "name": { "value": "Penelope","synonyms": []}},
+                        {"id": "recaIZp4oFWZfMnH4", "name": { "value": "Raveena","synonyms": []}},
+                        {"id": "recZT2tUhh0qKQjHJ", "name": { "value": "Ricardo","synonyms": []}},
+                        {"id": "rec7ZCIgVUL9VrDY2", "name": { "value": "Russell","synonyms": []}},
+                        {"id": "recy3S4XojZoGmp6K", "name": { "value": "Salli","synonyms": []}},
+                        {"id": "rec7MB03m6l5cZxll", "name": { "value": "Takumi","synonyms": []}},
+                        {"id": "recAp6oS7Q26Dw6v8", "name": { "value": "Vicki","synonyms": []}},
+                        {"id": "recxQStzfAscpm1SF", "name": { "value": "Vitória","synonyms": []}}
                     ]
                 },
                 {

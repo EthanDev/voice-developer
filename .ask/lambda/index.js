@@ -74,6 +74,7 @@ const EmotionIntentHandler = {
         return handlers.EmotionIntent(handlerInput);
     }
 };
+//TODO: We should also allow a user to modify the intensity of an emotion.
 
 const EmphasisIntentHandler = {
     canHandle(handlerInput) {
@@ -112,6 +113,18 @@ const PollyVoiceIntentHandler = {
     },
     handle(handlerInput) {
         return handlers.PollyVoiceIntent(handlerInput);
+    }
+};
+//TODO: Add the rest of the Polly voices to the Interaction Model.
+//TODO: Verify which voices work in which locales. It would be beneficial to let the user know that a voice isn't supported in their locale.
+
+const ProsodyRateIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ProsodyRateIntent';
+    },
+    handle(handlerInput) {
+        return handlers.ProsodyRateIntent(handlerInput);
     }
 };
 
@@ -254,6 +267,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         HelpIntentHandler,
         DomainIntentHandler,
         PollyVoiceIntentHandler,
+        ProsodyRateIntentHandler,
         BreakIntentHandler,
         EmotionIntentHandler,
         EmphasisIntentHandler,

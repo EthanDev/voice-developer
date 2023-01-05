@@ -107,6 +107,7 @@ function setAction(handlerInput, action) {
 
 function applySSML(handlerInput) {
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+  if (sessionAttributes.user.ProsodyRate != undefined) putSSML(handlerInput, `<prosody rate="${sessionAttributes.user.ProsodyRate}">`, `</prosody>`);
   if (sessionAttributes.user.Emotion != undefined) putSSML(handlerInput, `<amazon:emotion name="${sessionAttributes.user.Emotion}" intensity="high">`, `</amazon:emotion>`);
   if (sessionAttributes.user.Domain != undefined) putSSML(handlerInput, `<amazon:domain name="${sessionAttributes.user.Domain}">`, `</amazon:domain>`);
   if (sessionAttributes.user.Emphasis != undefined) putSSML(handlerInput, `<emphasis level="${sessionAttributes.user.Emphasis}">`, `</emphasis>`);

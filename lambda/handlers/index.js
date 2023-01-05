@@ -8,6 +8,7 @@ const HelpIntent = require("./HelpIntent");
 const LaunchRequest = require("./LaunchRequest");
 const NewsIntent = require("./NewsIntent");
 const PollyVoiceIntent = require("./PollyVoiceIntent");
+const ProsodyRateIntent = require("./ProsodyRateIntent");
 const RepeatIntent = require("./RepeatIntent");
 const SessionResumedRequest = require("./SessionResumedRequest");
 const SSMLIntent = require("./SSMLIntent");
@@ -27,6 +28,7 @@ module.exports = {
     LaunchRequest,
     NewsIntent,
     PollyVoiceIntent,
+    ProsodyRateIntent,
     RepeatIntent,
     SessionResumedRequest,
     SSMLIntent,
