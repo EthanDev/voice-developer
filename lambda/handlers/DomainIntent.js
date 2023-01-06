@@ -13,14 +13,14 @@ async function DomainIntent(handlerInput) {
     if (resolvedDomain === undefined) {
         if (spokenDomain != undefined) {
             var domainApology = await data.getRandomSpeech("DOMAINAPOLOGY", helper.getLocale(handlerInput));
-            speakOutput = `${domainApology.replace("SPOKENWORDS", spokenDomain)}<break time='.5s'/>${actionQuery}`;
+            speakOutput = `${domainApology.replace("SPOKENWORDS", spokenDomain)} ${actionQuery}`;
         }
         else {
             var domainApology = await data.getRandomSpeech("DOMAINAPOLOGY_NOSLOT", helper.getLocale(handlerInput));
             console.log(`INDEX OF "DOMAIN": ${domainApology.indexOf("DOMAIN")}`);
             if (sessionAttributes.user.Domain != undefined) domainApology = domainApology.replace("DOMAIN", sessionAttributes.user.Domain);
             else domainApology = domainApology.replace("DOMAIN", normal);
-            speakOutput = `${domainApology}<break time='.5s'/>${actionQuery}`;
+            speakOutput = `${domainApology} ${actionQuery}`;
         }
     }
     else {
@@ -34,9 +34,9 @@ async function DomainIntent(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.Domain = domainValue;
         if (domain != normal) {
-            speakOutput = `<amazon:domain name="${domain}">${domainConfirmation.replace("DOMAIN", domain)}<break time='.5s'/>${actionQuery}</amazon:domain>`;
+            speakOutput = `<amazon:domain name="${domain}">${domainConfirmation.replace("DOMAIN", domain)} ${actionQuery}</amazon:domain>`;
         }
-        else speakOutput = `${domainConfirmation.replace("DOMAIN", domain)}<break time='.5s'/>${actionQuery}`;
+        else speakOutput = `${domainConfirmation.replace("DOMAIN", domain)} ${actionQuery}`;
         
     }
 

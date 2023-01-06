@@ -12,7 +12,7 @@ async function EmphasisIntent(handlerInput) {
     if (resolvedEmphasis === undefined) {
         if (spokenEmphasis != undefined) {
             var emphasisApology = await data.getRandomSpeech("EMPHASISAPOLOGY", helper.getLocale(handlerInput));
-            speakOutput = `${emphasisApology.replace("SPOKENWORDS", spokenEmphasis)}<break time='.5s'/>${actionQuery}`;
+            speakOutput = `${emphasisApology.replace("SPOKENWORDS", spokenEmphasis)} ${actionQuery}`;
         }
     }
     else {
@@ -26,9 +26,9 @@ async function EmphasisIntent(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.Emphasis = emphasisValue;
         if (emphasis != normal) {
-            speakOutput = `<emphasis level="${emphasis}">${emphasisConfirmation.replace("EMPHASIS", emphasis)}<break time='.5s'/>${actionQuery}</emphasis>`;
+            speakOutput = `<emphasis level="${emphasis}">${emphasisConfirmation.replace("EMPHASIS", emphasis)} ${actionQuery}</emphasis>`;
         }
-        else speakOutput = `${emphasisConfirmation.replace("EMPHASIS", emphasis)}<break time='.5s'/>${actionQuery}`;
+        else speakOutput = `${emphasisConfirmation.replace("EMPHASIS", emphasis)} ${actionQuery}`;
         
     }
 

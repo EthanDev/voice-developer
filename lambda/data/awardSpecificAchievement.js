@@ -16,6 +16,8 @@ async function awardSpecificAchievement(code, handlerInput) {
     if (code.indexOf("EFFECT") != -1) achievementSpeech = await getRandomSpeech("ACHIEVEMENTUNLOCKEDNOSOUND", locale);
     else achievementSpeech = await getRandomSpeech("ACHIEVEMENTUNLOCKED", locale);
 
+    var achievementPoints = await getRandomSpeech("ACHIEVEMENTPOINTS", locale)
+
     return fetch(url, options)
         .then((res) => res.json())
         .then((r) => {
@@ -23,7 +25,9 @@ async function awardSpecificAchievement(code, handlerInput) {
                 const achievement = r.records[0];
                 if (!achievement.fields.UserAchievement || (achievement.fields.UserAchievement && !achievement.fields.User.includes(userRecordId))) {
                     if (achievement.id) createUserAchievementRecord(userRecordId, achievement.id);
-                    return `${achievementSpeech} ${achievement.fields.Description}`;
+                    var pluralPoints = "";
+                    if (achievement.fields.AchievementValue > 1) pluralPoints = "s"
+                    return `${achievementSpeech} ${achievement.fields.Description} ${achievementPoints.replace("POINTS", achievement.fields.AchievementValue).replace("SSS", pluralPoints)}`;
                 }
             }
             return "";

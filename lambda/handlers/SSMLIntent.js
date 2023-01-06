@@ -10,10 +10,10 @@ async function SSMLIntent(handlerInput) {
         data.getRandomSpeech("NORMAL", helper.getLocale(handlerInput))
     ]);
     
-    if (sessionAttributes.user.Domain != undefined) speakOutput = speakOutput.replace("DOMAIN", sessionAttributes.user.Domain);
+    if (sessionAttributes.user.Domain != undefined) speakOutput = `${speakOutput.replace("DOMAIN", sessionAttributes.user.Domain)} ${actionQuery}`;
     else speakOutput = speakOutput.replace("DOMAIN", normal);
 
-    if (sessionAttributes.user.Emotion != undefined) speakOutput = speakOutput.replace("EMOTION", sessionAttributes.user.Emotion);
+    if (sessionAttributes.user.Emotion != undefined) speakOutput = `${speakOutput.replace("EMOTION", sessionAttributes.user.Emotion)} ${actionQuery}`;
     else speakOutput = speakOutput.replace("EMOTION", normal);
 
     return handlerInput.responseBuilder

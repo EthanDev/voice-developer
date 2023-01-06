@@ -3,6 +3,8 @@ const handlers = require(`./handlers`);
 const data = require(`./data`);
 const helper = require("./helper");
 //TODO: Create an Alexa Widget that shows the latest developer news.
+//TODO: Add a ProsodyPitchIntent
+//TODO: Add a ProsodyVolumeIntent
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {

@@ -2,6 +2,9 @@ const helper = require("../helper");
 const data = require("../data");
 const fetch = require("node-fetch");
 
+//TODO: Make sure that your list of voices in the Interaction Model matches the entire list on https://developer.amazon.com/en-US/docs/alexa/custom-skills/speech-synthesis-markup-language-ssml-reference.html#voice
+
+
 async function PollyVoiceIntent(handlerInput) {
     var spokenVoice = helper.getSpokenWords(handlerInput, "voice");
     var resolvedVoice = helper.getResolvedWords(handlerInput, "voice");
@@ -12,7 +15,7 @@ async function PollyVoiceIntent(handlerInput) {
     if (resolvedVoice === undefined) {
         if (spokenEmotion != undefined) {
             var voiceApology = await data.getRandomSpeech("VOICEAPOLOGY", helper.getLocale(handlerInput));
-            speakOutput = `${voiceApology.replace("SPOKENWORDS", spokenVoice)}<break time='.5s'/>${actionQuery}`;
+            speakOutput = `${voiceApology.replace("SPOKENWORDS", spokenVoice)} ${actionQuery}`;
         }
     }
     else {
@@ -26,9 +29,14 @@ async function PollyVoiceIntent(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.PollyVoice = voiceValue;
         if (voice != normal) {
-            speakOutput = `<voice name="${voice}">${voiceConfirmation.replace("VOICE", voice)}<break time='.5s'/>${actionQuery}</voice>`;
+            speakOutput = `<voice name="${voice}">${voiceConfirmation.replace("VOICE", voice)} ${actionQuery}</voice>`;
+            var achievementName = `VOICE${voice.toUpperCase()}`
+            speakOutput = (await data.awardSpecificAchievement(achievementName, handlerInput)) + " " + speakOutput;
         }
-        else speakOutput = `${voiceConfirmation.replace("VOICE", voice)}<break time='.5s'/>${actionQuery}`;
+        else {
+            speakOutput = `${voiceConfirmation.replace("VOICE", voice)} ${actionQuery}`;
+            speakOutput = await data.awardSpecificAchievement("VOICEALEXA", handlerInput) + " " + speakOutput;
+        }
         
     }
 

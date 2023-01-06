@@ -78,7 +78,7 @@ async function SoundEffectIntent(handlerInput) {
     //speakOutput += await achievement.checkSoundEffectAchievements(soundEffectCountResult);
 
     return handlerInput.responseBuilder
-        .speak(`${speakOutput}<break time='.5s'/>${actionQuery}`)
+        .speak(`${speakOutput} ${actionQuery}`)
         .reprompt(actionQuery)
         //TODO: APL!
         .withSimpleCard(`Sound Effect: ${SoundEffectCardTitle}`, `SSML SYNTAX:\n<audio src="soundbank://soundlibrary/${SoundEffectCardExample}"/>`)

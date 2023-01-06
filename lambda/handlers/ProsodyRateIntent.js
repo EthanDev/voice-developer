@@ -10,10 +10,10 @@ async function ProsodyRateIntent(handlerInput) {
     var normal = await data.getRandomSpeech("NORMAL", helper.getLocale(handlerInput));
 
     if ((resolvedRate === undefined)) {
-        //TODO: What did you expect to happen when the doesn't say anything other than to trigger the intent?
+        //TODO: What did you expect to happen when the user doesn't say anything other than to trigger the intent?
         if (spokenRate != undefined) {
             var rateApology = await data.getRandomSpeech("PROSODYRATEAPOLOGY", helper.getLocale(handlerInput));
-            speakOutput = `${rateApology.replace("SPOKENWORDS", spokenRate)}<break time='.5s'/>${actionQuery}`;
+            speakOutput = `${rateApology.replace("SPOKENWORDS", spokenRate)} ${actionQuery}`;
         }
     }
     else {
@@ -27,9 +27,9 @@ async function ProsodyRateIntent(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.ProsodyRate = rateValue;
         if (rate != normal) {
-            speakOutput = `<prosody rate="${rate}">${rateConfirmation.replace("RATE", rate)}<break time='.5s'/>${actionQuery}</prosody>`;
+            speakOutput = `<prosody rate="${rate}">${rateConfirmation.replace("RATE", rate)} ${actionQuery}</prosody>`;
         }
-        else speakOutput = `${rateConfirmation.replace("RATE", rate)}<break time='.5s'/>${actionQuery}`;
+        else speakOutput = `${rateConfirmation.replace("RATE", rate)} ${actionQuery}`;
         
     }
 

@@ -22,7 +22,7 @@ async function SpeechconIntent(handlerInput) {
     speakOutput += achievementSpeech;
 
     return handlerInput.responseBuilder
-        .speak(`${speakOutput}<break time='.5s'/>${actionQuery}`)
+        .speak(`${speakOutput} ${actionQuery}`)
         .reprompt(actionQuery)
         //TODO: APL!
         .withSimpleCard(`Speechcon: ${speechcon}`, `SSML SYNTAX:\n<say-as interpret-as='interjection'>${speechcon}</say-as>`)
