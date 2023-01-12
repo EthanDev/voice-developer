@@ -67,6 +67,16 @@
                     ]
                 },
                 {
+                    "name": "OfficeHoursIntent",
+                    "slots": [],
+                    "samples": [
+                        "play office hours",
+                        "office hours",
+                        "show me the last episode of office hours",
+                        "show me office hours"
+                    ]
+                },
+                {
                     "name": "BuyProductIntent",
                     "slots": [
                         {
@@ -104,15 +114,6 @@
                 {
                     "name": "AMAZON.RepeatIntent",
                     "samples": []
-                },
-                {
-                    "name": "OfficeHoursIntent",
-                    "slots": [],
-                    "samples": [
-                        "show me office hours",
-                        "play office hours",
-                        "show me the last office hours"
-                    ]
                 },
                 {
                     "name": "EmotionIntent",
@@ -616,7 +617,6 @@
                         {"id": "recjzsnEG28gdaTxi", "name": { "value": "Node SDK","synonyms": []}},
                         {"id": "rec3t2mZbR2UMW2El", "name": { "value": "Node.js","synonyms": []}},
                         {"id": "recpucg76cVrV8JgS", "name": { "value": "Notifications","synonyms": []}},
-                        {"id": "reclQDTjuFrO4r6hV", "name": { "value": "Office Hours","synonyms": ["q and a", "ask the experts", "developer office hours"]}},
                         {"id": "recQE5VKu9nbpnluH", "name": { "value": "Permissions","synonyms": []}},
                         {"id": "recNYOnDcjHN7jF0W", "name": { "value": "Persistence","synonyms": ["save data", "session data", "save session", "persist", "database", "dynamo db"]}},
                         {"id": "recCtzIEBFg9kknuC", "name": { "value": "Phonemes","synonyms": ["phonetic spelling", "phonetics"]}},

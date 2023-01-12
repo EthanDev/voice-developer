@@ -108,6 +108,16 @@ const NewsIntentHandler = {
     }
 };
 
+const OfficeHoursIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'OfficeHoursIntent';
+    },
+    handle(handlerInput) {
+        return handlers.OfficeHoursIntent(handlerInput);
+    }
+};
+
 const PollyVoiceIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -264,6 +274,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         NewsIntentHandler,
         AnswerIntentHandler,
         SpeechconIntentHandler,
+        OfficeHoursIntentHandler,
         SoundEffectIntentHandler,
         BuyProductIntentHandler,
         HelpIntentHandler,
