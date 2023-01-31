@@ -41,6 +41,27 @@ async function AnswerIntent(handlerInput) {
         var answerName = answer.Name;
         if (answer.Pronunciation != undefined) answerName = answer.Pronunciation;
         speakOutput = `${answerConfirmation.replace("ANSWER", answerName)}. ${answer.VoiceResponse}`;
+
+        if (helper.supportsAPL(handlerInput)) {
+            var apl = require("../apl/answerLink.json");
+
+            apl.document.mainTemplate.items[0].items[0].items[1].buttonText = answer.LinkPrefix;
+            apl.document.mainTemplate.items[0].items[0].items[1].primaryAction[0].source = answer.Link;
+            apl.document.mainTemplate.items[0].items[0].items[0].source = answer.Media[0].url;
+            apl.document.mainTemplate.items[0].items[0].items[2].text = `<br/>${answer.ScreenResponse}`;
+            
+
+            var directive = {
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                token: '[SkillProvidedToken]',
+                version: '1.0',
+                document: apl.document,
+                datasources: apl.datasources
+            }
+            handlerInput.responseBuilder.addDirective(directive);
+        }
+
+        handlerInput.responseBuilder.withSimpleCard(`${answer.Name}`, `${answer.CardResponse}\r\n ${answer.LinkPrefix} ${answer.Link}`);
     }
 
     return handlerInput.responseBuilder

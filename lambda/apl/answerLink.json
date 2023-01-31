@@ -1,0 +1,68 @@
+{
+    "document": {
+      "type": "APL",
+      "version": "1.6",
+      "theme": "dark",
+      "import": [
+        {
+          "name": "alexa-layouts",
+          "version": "1.3.0"
+        }
+      ],
+      "mainTemplate": {
+        "parameters": [
+          "payload"
+        ],
+        "items": [
+          {
+            "type": "Container",
+            "width": "100vw",
+            "height": "100vh",
+            "alignItems": "center",
+            "justifyContent": "center",
+            "items": [
+              {
+                "type": "Container",
+                "width": "50vw",
+                "alignItems": "center",
+                "items": [
+                  {
+                    "type": "Image",
+                    "source": "",
+                    "scale": "fill",
+                    "width":"480",
+                    "height": "369"
+                  },
+                  {
+                    "when": "${environment.allowOpenURL}",
+                    "type": "AlexaButton",
+                    "width": "100%",
+                    "buttonText": "Button Text",
+                    "primaryAction": [
+                      {
+                        "type": "OpenURL",
+                        "source": "https://jeffblankenburg.info"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "text": "<br/>This is the text that I want to make dynamic.",
+                    "fontSize": "15dp"
+                  }
+                ]
+              },
+              {
+                "when": "${!environment.allowOpenURL}",
+                "type": "Text",
+                "text": "Your device doesn't support opening URLs."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "datasources": {
+        
+    }
+}
