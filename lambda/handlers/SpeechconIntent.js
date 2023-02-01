@@ -11,11 +11,11 @@ async function SpeechconIntent(handlerInput) {
 
     if (speechconResult === undefined) {
         speechcon = await data.getRandomSpeechcon(helper.getLocale(handlerInput));
-        speakOutput = `<say-as interpret-as='interjection'>${speechcon}</say-as>`;
+        speakOutput = `<say-as interpret-as='interjection'>${speechcon}</say-as><break time='.5s'/>`;
     }
     else if (speechconResult.length > 0) {
         speechcon = speechconResult[0].value.name;
-        speakOutput = `<say-as interpret-as='interjection'>${speechcon}</say-as>`;
+        speakOutput = `<say-as interpret-as='interjection'>${speechcon}<break time='.5s'/></say-as> `;
     }
 
     var achievementSpeech = await data.updateUserSpeechconCount(handlerInput, 1);
