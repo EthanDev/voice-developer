@@ -2,9 +2,7 @@ const Alexa = require('ask-sdk-core');
 const handlers = require(`./handlers`);
 const data = require(`./data`);
 const helper = require("./helper");
-//TODO: Create an Alexa Widget that shows the latest developer news.
-//TODO: Add a ProsodyPitchIntent
-//TODO: Add a ProsodyVolumeIntent
+//TODO: Connect this to the database so that we pull the latest episode.
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
