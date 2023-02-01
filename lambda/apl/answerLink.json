@@ -48,7 +48,8 @@
                   {
                     "type": "Text",
                     "text": "<br/>This is the text that I want to make dynamic.",
-                    "fontSize": "15dp"
+                    "fontSize": "15dp",
+                    "maxLines": 3
                   }
                 ]
               },
