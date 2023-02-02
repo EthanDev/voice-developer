@@ -1,0 +1,338 @@
+{
+    "type": "APL",
+    "version": "1.1",
+    "theme": "dark",
+    "import": [
+      {
+        "name": "alexa-layouts",
+        "version": "1.2.0"
+      },
+      {
+        "name": "alexa-viewport-profiles",
+        "version": "1.1.0"
+      }
+    ],
+    "resources": [
+      {
+        "description": "Stock color for the light theme",
+        "colors": {
+          "colorTextPrimary": "#151920"
+        }
+      },
+      {
+        "description": "Stock color for the dark theme",
+        "colors": {
+          "colorTextPrimary": "#f0f1ef"
+        },
+        "when": "${viewport.theme == 'dark'}"
+      },
+      {
+        "description": "Standard font sizes",
+        "dimensions": {
+          "textSizeBody": 48,
+          "textSizePrimary": 27,
+          "textSizeSecondary": 23,
+          "textSizeSecondaryHint": 25
+        }
+      },
+      {
+        "description": "Common spacing values",
+        "dimensions": {
+          "textSizeBody": 0,
+          "textSizePrimary": 0,
+          "textSizeSecondary": 0,
+          "textSizeSecondaryHint": 0,
+          "spacingThin": 6,
+          "spacingSmall": 12,
+          "spacingMedium": 24,
+          "spacingLarge": 48,
+          "spacingExtraLarge": 72
+        }
+      },
+      {
+        "description": "Common margins and padding",
+        "dimensions": {
+          "textSizeBody": 0,
+          "textSizePrimary": 0,
+          "textSizeSecondary": 0,
+          "textSizeSecondaryHint": 0,
+          "marginTop": 40,
+          "marginLeft": 60,
+          "marginRight": 60,
+          "marginBottom": 40
+        }
+      }
+    ],
+    "onMount": [],
+    "mainTemplate": {
+      "parameters": [
+        "payload"
+      ],
+      "items": [
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "Image",
+              "source": "",
+              "scale": "best-fill",
+              "filter": [
+                {
+                  "type": "Gradient",
+                  "gradient": {
+                    "type": "linear",
+                    "colorRange": [
+                      "#000",
+                      "rgba(0,0,0,0)"
+                    ],
+                    "inputRange": [
+                      0,
+                      0.999
+                    ],
+                    "angle": 0
+                  }
+                },
+                {
+                  "type": "Blend",
+                  "mode": "color-burn",
+                  "source": -2,
+                  "destination": -1
+                }
+              ],
+              "width": "100%",
+              "height": "100%",
+              "position": "absolute",
+              "opacity": 1,
+              "disabled": false
+            },
+            {
+              "headerBackButton": false,
+              "headerTitle": "Alexa Developer Office Hours",
+              "headerAttributionImage": "",
+              "headerDivider": true,
+              "type": "AlexaHeader",
+              "opacity": 1,
+              "disabled": false
+            },
+            {
+              "scrollDirection": "horizontal",
+              "type": "Sequence",
+              "items": [
+                {
+                  "onPress": {
+                    "commands": [
+                      {
+                        "type": "ScaleInOutOnPress",
+                        "screenLock": false,
+                        "delay": 0
+                      },
+                      {
+                        "type": "SendEvent",
+                        "arguments": [
+                          "UserEventPlaybackStart",
+                          ""
+                        ],
+                        "screenLock": false,
+                        "delay": 0
+                      }
+                    ],
+                    "type": "Parallel",
+                    "screenLock": false,
+                    "delay": 0
+                  },
+                  "type": "TouchWrapper",
+                  "paddingTop": "8vh",
+                  "items": [
+                    {
+                      "type": "Container",
+                      "items": [
+                        {
+                          "type": "Image",
+                          "source": "${data.primaryImageSource}",
+                          "width": "30vw",
+                          "height": "52vh",
+                          "paddingBottom": "15vh",
+                          "paddingRight": "12px",
+                          "opacity": 1,
+                          "disabled": false
+                        },
+                        {
+                          "fontSize": "20dp",
+                          "text": "${data.name}",
+                          "type": "Text",
+                          "style": "textStyleBody",
+                          "top": "-15vh",
+                          "opacity": 1,
+                          "disabled": false
+                        },
+                        {
+                          "fontSize": "20dp",
+                          "text": "${data.index}",
+                          "type": "Text",
+                          "style": "textStyleBody",
+                          "top": "-15vh",
+                          "opacity": 1,
+                          "disabled": false
+                        },
+                        {
+                          "fontSize": "15dp",
+                          "text": "${data.premiereDate}",
+                          "type": "Text",
+                          "style": "textStyleBody",
+                          "top": "-15vh",
+                          "opacity": 1,
+                          "disabled": false
+                        }
+                      ],
+                      "width": "30vw",
+                      "height": "70vh",
+                      "opacity": 1,
+                      "disabled": false
+                    }
+                  ],
+                  "id": "${data.id}",
+                  "opacity": 1,
+                  "disabled": false
+                }
+              ],
+              "width": "95vw",
+              "height": "100vh",
+              "left": "5vw",
+              "top": "4vh",
+              "opacity": 1,
+              "disabled": false,
+              "data": "${payload.templateData.properties.items}"
+            },
+            {
+              "hintText": "",
+              "type": "AlexaFooter",
+              "position": "absolute",
+              "bottom": "1vh",
+              "id": "hint",
+              "opacity": 1,
+              "disabled": false,
+              "onMount": [
+                {
+                  "commands": [
+                    {
+                      "type": "AnimateItem",
+                      "easing": "ease-in",
+                      "duration": 1020,
+                      "componentId": "hint",
+                      "value": [
+                        {
+                          "from": 1,
+                          "to": 0,
+                          "property": "opacity"
+                        }
+                      ],
+                      "screenLock": false,
+                      "delay": 5000
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "hintText",
+                      "value": "Try \"Alexa, Show The ${payload.templateData.properties.items[0].type}: ${payload.templateData.properties.items[Time.seconds(localTime/payload.templateData.properties.items.length) % payload.templateData.properties.items.length].name}\"",
+                      "componentId": "hint",
+                      "screenLock": false,
+                      "delay": 0
+                    },
+                    {
+                      "type": "AnimateItem",
+                      "easing": "ease-out",
+                      "duration": 1020,
+                      "componentId": "hint",
+                      "value": [
+                        {
+                          "from": 0,
+                          "to": 1,
+                          "property": "opacity"
+                        }
+                      ],
+                      "screenLock": false,
+                      "delay": 2500
+                    }
+                  ],
+                  "type": "Sequential",
+                  "repeatCount": 15,
+                  "screenLock": false,
+                  "delay": 0
+                }
+              ]
+            }
+          ],
+          "width": "100vw",
+          "height": "100vh",
+          "id": "primary",
+          "opacity": 1,
+          "disabled": false
+        }
+      ]
+    },
+    "commands": {
+      "ScaleInOutOnPress": {
+        "commands": [
+          {
+            "type": "AnimateItem",
+            "easing": "ease",
+            "duration": 250,
+            "value": [
+              {
+                "from": [
+                  {
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "skewX": 0,
+                    "skewY": 0
+                  }
+                ],
+                "to": [
+                  {
+                    "scaleX": 0.9,
+                    "scaleY": 0.9,
+                    "skewX": 0,
+                    "skewY": 0
+                  }
+                ],
+                "property": "transform"
+              }
+            ],
+            "screenLock": false,
+            "delay": 0
+          },
+          {
+            "type": "AnimateItem",
+            "easing": "ease",
+            "duration": 250,
+            "value": [
+              {
+                "from": [
+                  {
+                    "scaleX": 0.9,
+                    "scaleY": 0.9,
+                    "skewX": 0,
+                    "skewY": 0
+                  }
+                ],
+                "to": [
+                  {
+                    "scaleX": 1,
+                    "scaleY": 1,
+                    "skewX": 0,
+                    "skewY": 0
+                  }
+                ],
+                "property": "transform"
+              }
+            ],
+            "screenLock": false,
+            "delay": 0
+          }
+        ],
+        "type": "Sequential",
+        "repeatCount": 0,
+        "screenLock": false,
+        "delay": 0
+      }
+    }
+  }

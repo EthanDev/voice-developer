@@ -14,7 +14,7 @@ async function AnswerIntent(handlerInput) {
         if (spokenAnswer != undefined) {
             var missedAnswer = await data.saveMissedAnswer(spokenAnswer, handlerInput);
             var answerApology = await data.getRandomSpeech("ANSWERAPOLOGY", helper.getLocale(handlerInput));
-            speakOutput = answerApology.replace("SPOKENWORDS", spokenAnswer);
+            speakOutput = `${answerApology.replace("SPOKENWORDS", spokenAnswer)} ${actionQuery}`;
         }
         else {
             var [answer, answerConfirmation] = await Promise.all([
@@ -23,37 +23,44 @@ async function AnswerIntent(handlerInput) {
             ]);
             sessionAttributes.user.AnswerCount++;
 
-            speakOutput = createAnswerResponse(handlerInput, answer, answerConfirmation);
+            speakOutput = `${await createAnswerResponse(handlerInput, answer, answerConfirmation)} ${actionQuery}`;
         }
     }
     else if (resolvedAnswer.length === 1) {
         answerId = resolvedAnswer[0].value.id;
-        var [answer, answerConfirmation, userAnswerRecord] = await Promise.all([
+        var [answer, answerConfirmation] = await Promise.all([
             data.getAnswer(answerId, helper.getLocale(handlerInput)),
             data.getRandomSpeech("ANSWERCONFIRMATION", helper.getLocale(handlerInput)),
-            data.saveUserAnswer(answerId, handlerInput)
         ]);
 
         if ((!answer.UserAnswer)||(answer.UserAnswer && !answer.UserAnswer.includes(sessionAttributes.user.RecordId))) {
             sessionAttributes.user.AnswerCount++;
         }
 
-        speakOutput = createAnswerResponse(handlerInput, answer, answerConfirmation);
+        speakOutput = `${await createAnswerResponse(handlerInput, answer, answerConfirmation)} ${actionQuery}`;
     }
     else if (resolvedAnswer.length > 1) {
-        //TODO: If there is more than one entity resolved, provide a list of options. (What do you do if there are 5 or more resolutions?)
+        var optionList = "";
+        for (var i = 0;i<resolvedAnswer.length;i++) {
+            if (i > 0) optionList += ", "
+            if (i === resolvedAnswer.length-1) optionList += " or ";
+            optionList += `${resolvedAnswer[i].value.name}`;
+        }
+        speakOutput = `I heard you say ${spokenAnswer}, and I found ${resolvedAnswer.length} options for you. Did you want ${optionList}? `;
     }
     var achievementSpeech = await data.checkAnswerAchievements(handlerInput);
     speakOutput += achievementSpeech;
 
     return handlerInput.responseBuilder
-        .speak(`${speakOutput} ${actionQuery}`)
+        .speak(`${speakOutput}`)
         .reprompt(actionQuery)
         .getResponse();
 }
 
-function createAnswerResponse(handlerInput, answer, speech) {
+async function createAnswerResponse(handlerInput, answer, speech) {
     var answerName = answer.Name;
+    var userAnswerResponse = await data.saveUserAnswer(answer.RecordId, handlerInput);
+
     if (answer.Pronunciation != undefined) answerName = answer.Pronunciation;
     var speakOutput = `${speech.replace("ANSWER", answerName)}. ${answer.VoiceResponse}`;
 

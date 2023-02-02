@@ -1,0 +1,82 @@
+{
+    "templateData": {
+      "type": "object",
+      "properties": {
+        "items": [
+          {
+            "premiereDate": "Tuesday, November 12, 2019",
+            "name": "Chapter 1",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 1",
+            "primaryImageSource": "/Items/67177/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 67177,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Friday, November 15, 2019",
+            "name": "Chapter 2: The Child",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 2",
+            "primaryImageSource": "/Items/67587/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 67587,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Friday, November 22, 2019",
+            "name": "Chapter 3",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 3",
+            "primaryImageSource": "/Items/70347/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 70347,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Friday, November 29, 2019",
+            "name": "Chapter 4",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 4",
+            "primaryImageSource": "/Items/71128/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 71128,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Friday, December 06, 2019",
+            "name": "Chapter 5",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 5",
+            "primaryImageSource": "/Items/71946/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 71946,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Friday, December 13, 2019",
+            "name": "Chapter 6",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 6",
+            "primaryImageSource": "/Items/72474/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 72474,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Wednesday, December 18, 2019",
+            "name": "Chapter 7: The Reckoning",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 7",
+            "primaryImageSource": "/Items/73352/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 73352,
+            "type": "Episode"
+          },
+          {
+            "premiereDate": "Thursday, December 26, 2019",
+            "name": "Chapter 8: Redemption",
+            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+            "index": "Episode 8",
+            "primaryImageSource": "/Items/74276/Images/primary?quality=90&amp;maxHeight=508&amp;maxWidth=600&amp;",
+            "id": 74276,
+            "type": "Episode"
+          }
+        ],
+        "url": "https://theater.unityhome.online"
+      }
+    }
+  }
