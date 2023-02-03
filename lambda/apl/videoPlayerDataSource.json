@@ -1,0 +1,29 @@
+{
+    "videoplayerData": {
+      "transformers": [
+        {
+          "inputPath": "spokenSsml",
+          "outputName": "speech",
+          "transformer": "ssmlToSpeech"
+        },
+        {
+          "inputPath": "spokenSsml",
+          "outputName": "spokenText",
+          "transformer": "ssmlToText"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "displayText": "Here's the trailer for Big Buck Bunny",
+        "playlist": [
+          {
+            "subtitle": "Simple Sample Testvideo",
+            "title": "Big Buck Bunny",
+            "url": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_30MB.mp4"
+          }
+        ],
+        "spokenText": "Here's the trailer for Big Buck Bunny",
+        "spokenSsml": "<speak>Here's the trailer for Big Buck Bunny</speak>"
+      }
+    }
+  }

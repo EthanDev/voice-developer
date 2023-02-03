@@ -1,49 +1,493 @@
 {
-    "document": {
-        "type": "APL",
-        "version": "1.1",
-        "settings": {},
-        "theme": "dark",
-        "import": [],
-        "resources": [],
-        "styles": {},
-        "onMount": [],
-        "graphics": {},
-        "commands": {},
-        "layouts": {},
-        "mainTemplate": {
-            "parameters": [
-                "payload"
-            ],
-            "items": [
-                {
-                    "type": "Container",
-                    "items": [
-                        {
-                            "type": "Video",
-                            "width": "100%",
-                            "height": "100%",
-                            "autoplay": true,
-                            "source": "https://voice-developer.s3.amazonaws.com/office-hours/01-11-2023.mp4",
-                            "scale": "best-fit",
-                            "onEnd": [
-                                {
-                                  "type": "SendEvent",
-                                  "arguments": [
-                                    "VIDEOENDED"
-                                  ],
-                                  "components": [
-                                    "idForTheTextComponent"
-                                  ]
-                                }
-                            ]
-                        }
-                    ],
-                    "height": "100%",
-                    "width": "100%"
-                }
-            ]
+    "type": "APL",
+    "version": "1.4",
+    "import": [
+      {
+        "name": "alexa-layouts",
+        "version": "1.2.0"
+      },
+      {
+        "name": "alexa-styles",
+        "version": "1.1.0"
+      }
+    ],
+    "layouts": {
+      "FormattedDuration": {
+        "parameters": [
+          {
+            "name": "seconds",
+            "type": "number",
+            "default": 0
+          },
+          {
+            "name": "format",
+            "type": "string",
+            "default": "${seconds >= 3600 ? 'HH:mm:ss' : 'mm:ss'}"
+          }
+        ],
+        "item": {
+          "type": "Text",
+          "fontSize": "${@fontSizeXSmall}",
+          "text": "${Time.format(format, seconds)}"
         }
+      }
     },
-    "datasources": {}
-}
+    "mainTemplate": {
+      "parameters": [
+        "payload"
+      ],
+      "items": [
+        {
+          "type": "Container",
+          "direction": "column",
+          "height": "100vh",
+          "width": "100vw",
+          "bind": [
+            {
+              "name": "progressValue",
+              "type": "number",
+              "value": "0"
+            },
+            {
+              "name": "totalValue",
+              "type": "number",
+              "value": "0"
+            }
+          ],
+          "items": [
+            {
+              "type": "TouchWrapper",
+              "id": "videoWideToggleButton",
+              "width": "100vw",
+              "height": "100vh",
+              "items": [
+                {
+                  "type": "Video",
+                  "id": "videoPlayer",
+                  "width": "100vw",
+                  "height": "100vh",
+                  "autoplay": false,
+                  "audioTrack": "foreground",
+                  "source": "${payload.videoplayerData.properties.playlist}",
+                  "onPause": [
+                    {
+                      "type": "Parallel",
+                      "commands": [
+                        {
+                          "type": "SetState",
+                          "componentId": "alexaPlayPauseToggleButton",
+                          "state": "checked",
+                          "value": false
+                        },
+                        {
+                          "type": "SetValue",
+                          "componentId": "overlayContainer",
+                          "property": "display",
+                          "value": "normal"
+                        },
+                        {
+                          "type": "SetFocus",
+                          "componentId": "alexaPlayPauseToggleButton"
+                        },
+                        {
+                          "type": "SendEvent",
+                          "arguments": [
+                            "trackIndex: ${event.trackIndex}, trackCount: ${event.trackCount}, currentTime: ${event.currentTime}, duration: ${event.duration}, paused: ${event.paused}, ended: ${event.ended}"
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "onPlay": [
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "componentId": "roundHubBar",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "Parallel",
+                      "commands": [
+                        {
+                          "type": "SetValue",
+                          "componentId": "waitingContainer",
+                          "property": "opacity",
+                          "value": "0"
+                        },
+                        {
+                          "type": "SetState",
+                          "componentId": "alexaPlayPauseToggleButton",
+                          "state": "checked",
+                          "value": true
+                        },
+                        {
+                          "type": "SetValue",
+                          "componentId": "title",
+                          "property": "text",
+                          "value": "${payload.videoplayerData.properties.playlist[event.trackIndex].title}"
+                        },
+                        {
+                          "type": "SetValue",
+                          "componentId": "subtitle",
+                          "property": "text",
+                          "value": "${payload.videoplayerData.properties.playlist[event.trackIndex].subtitle}"
+                        },
+                        {
+                          "type": "showOverlayShortly"
+                        },
+                        {
+                          "type": "SendEvent",
+                          "arguments": [
+                            "trackIndex: ${event.trackIndex}, trackCount: ${event.trackCount}, currentTime: ${event.currentTime}, duration: ${event.duration}, paused: ${event.paused}, ended: ${event.ended}"
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "onEnd": [
+                    {
+                      "type": "SendEvent",
+                      "arguments": [
+                        "trackIndex: ${event.trackIndex}, trackCount: ${event.trackCount}, currentTime: ${event.currentTime}, duration: ${event.duration}, paused: ${event.paused}, ended: ${event.ended}",
+                        "VideoEnd"
+                      ]
+                    }
+                  ],
+                  "onTimeUpdate": [
+                    {
+                      "type": "SetValue",
+                      "property": "progressValue",
+                      "value": "${event.currentTime}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "progressValue",
+                      "componentId": "roundHubBar",
+                      "value": "${event.currentTime}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "componentId": "roundHubBar",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "SendEvent",
+                      "arguments": [
+                        "trackIndex: ${event.trackIndex}, trackCount: ${event.trackCount}, currentTime: ${event.currentTime}, duration: ${event.duration}, paused: ${event.paused}, ended: ${event.ended}"
+                      ]
+                    }
+                  ],
+                  "onTrackUpdate": [
+                    {
+                      "type": "SetValue",
+                      "componentId": "roundHubBar",
+                      "property": "progressValue",
+                      "value": "0"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "progressValue",
+                      "value": "0"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "property": "totalValue",
+                      "componentId": "roundHubBar",
+                      "value": "${event.duration}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "componentId": "title",
+                      "property": "text",
+                      "value": "${payload.videoplayerData.properties.playlist[event.trackIndex].title}"
+                    },
+                    {
+                      "type": "SetValue",
+                      "componentId": "subtitle",
+                      "property": "text",
+                      "value": "${payload.videoplayerData.properties.playlist[event.trackIndex].subtitle}"
+                    },
+                    {
+                      "type": "showOverlayShortly"
+                    },
+                    {
+                      "type": "SendEvent",
+                      "arguments": [
+                        "trackIndex: ${event.trackIndex}, trackCount: ${event.trackCount}, currentTime: ${event.currentTime}, duration: ${event.duration}, paused: ${event.paused}, ended: ${event.ended}"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "onPress": [
+                {
+                  "type": "showOverlayShortly"
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "id": "overlayContainer",
+              "position": "absolute",
+              "display": "invisible",
+              "width": "100vw",
+              "height": "100vh",
+              "alignItems": "center",
+              "justifyContent": "${@viewportProfile == @hubRoundSmall ? 'center' : 'start'}",
+              "items": [
+                {
+                  "when": "${@viewportProfile == @hubRoundSmall}",
+                  "type": "AlexaProgressBarRadial",
+                  "id": "roundHubBar",
+                  "progressBarType": "determinate",
+                  "bufferValue": 0,
+                  "isLoading": false,
+                  "progressValue": 1000,
+                  "totalValue": 100000,
+                  "position": "absolute"
+                },
+                {
+                  "when": "${@viewportProfile == @hubRoundSmall}",
+                  "type": "Container",
+                  "position": "absolute",
+                  "top": 20,
+                  "left": 0,
+                  "items": [
+                    {
+                      "paddingTop": "@spacingXSmall",
+                      "type": "Container",
+                      "direction": "row",
+                      "width": "95vw",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "items": [
+                        {
+                          "type": "FormattedDuration",
+                          "seconds": "${progressValue}"
+                        },
+                        {
+                          "type": "Text",
+                          "text": "/"
+                        },
+                        {
+                          "type": "FormattedDuration",
+                          "seconds": "${totalValue}"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Frame",
+                  "paddingTop": "1vh",
+                  "paddingBottom": "1vh",
+                  "paddingLeft": "1vh",
+                  "paddingRight": "1vh",
+                  "item": [
+                    {
+                      "type": "Container",
+                      "items": [
+                        {
+                          "type": "Text",
+                          "id": "title",
+                          "text": " ",
+                          "width": "100vw",
+                          "textAlign": "center",
+                          "fontSize": "8vh",
+                          "maxLines": 2,
+                          "paddingTop": "3vh",
+                          "paddingLeft": "3vw",
+                          "paddingRight": "3vw"
+                        },
+                        {
+                          "type": "Text",
+                          "id": "subtitle",
+                          "text": " ",
+                          "width": "100vw",
+                          "textAlign": "center",
+                          "fontSize": "5vh",
+                          "paddingTop": "1vh",
+                          "maxLines": 3,
+                          "paddingLeft": "3vw",
+                          "paddingRight": "3vw"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Frame",
+                  "position": "absolute",
+                  "bottom": "2vh",
+                  "backgroundColor": "${@viewportProfile == @hubRoundSmall ? 'transparent' : ''}",
+                  "borderRadius": "20",
+                  "items": {
+                    "type": "Container",
+                    "alignItems": "center",
+                    "items": [
+                      {
+                        "type": "Container",
+                        "alignSelf": "center",
+                        "paddingTop": "@spacingSmall",
+                        "alignItems": "center",
+                        "width": "100vw",
+                        "items": [
+                          {
+                            "when": "${@viewportProfile != @hubRoundSmall}",
+                            "type": "AlexaProgressBar",
+                            "position": "relative",
+                            "progressValue": "${progressValue}",
+                            "totalValue": "${totalValue}",
+                            "width": " 95vw",
+                            "spacing": "@spacingLarge"
+                          },
+                          {
+                            "when": "${@viewportProfile != @hubRoundSmall}",
+                            "paddingTop": "@spacingXSmall",
+                            "type": "Container",
+                            "width": "95vw",
+                            "justifyContent": "spaceBetween",
+                            "direction": "row",
+                            "items": [
+                              {
+                                "type": "FormattedDuration",
+                                "seconds": "${progressValue}"
+                              },
+                              {
+                                "type": "FormattedDuration",
+                                "seconds": "${totalValue}"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "AlexaTransportControls",
+                            "mediaComponentId": "videoPlayer",
+                            "playPauseToggleButtonId": "alexaPlayPauseToggleButton",
+                            "autoplay": false,
+                            "primaryControlSize": "10vh",
+                            "secondaryControlSize": "10vh",
+                            "secondaryControlsAVGLeft": "M3 20.25C3 20.6642 3.33579 21 3.75 21C4.16421 21 4.5 20.6642 4.5 20.25L4.5 3.75C4.5 3.33579 4.16422 3 3.75 3C3.33579 3 3 3.33579 3 3.75V20.25Z M18.2303 20.4748C19.3883 21.305 21 20.4774 21 19.0526L21 4.82961C21 3.44582 19.4698 2.60946 18.3051 3.35665L7.8354 10.073C6.79467 10.7407 6.75574 12.2477 7.76062 12.9682L18.2303 20.4748Z M19.5 19.0526C19.5 19.2561 19.2697 19.3743 19.1043 19.2557L8.63465 11.7492C8.4911 11.6463 8.49666 11.431 8.64534 11.3356L19.115 4.61919C19.2814 4.51245 19.5 4.63193 19.5 4.82961L19.5 19.0526Z",
+                            "secondaryControlsAVGRight": "M21 3.75C21 3.33579 20.6642 3 20.25 3C19.8358 3 19.5 3.33579 19.5 3.75V20.25C19.5 20.6642 19.8358 21 20.25 21C20.6642 21 21 20.6642 21 20.25V3.75Z M5.7697 3.52521C4.61175 2.69498 3 3.5226 3 4.94743V19.1704C3 20.5542 4.53019 21.3905 5.69492 20.6434L16.1646 13.927C17.2053 13.2593 17.2443 11.7523 16.2394 11.0318L5.7697 3.52521Z M4.5 4.94743C4.5 4.74388 4.73025 4.62565 4.89567 4.74425L15.3653 12.2508C15.5089 12.3537 15.5033 12.569 15.3547 12.6644L4.88499 19.3808C4.7186 19.4876 4.5 19.3681 4.5 19.1704V4.94743Z",
+                            "secondaryControlsRightAction": {
+                              "type": "SendEvent",
+                              "arguments": [
+                                " ",
+                                "next"
+                              ]
+                            },
+                            "secondaryControlsLeftAction": {
+                              "type": "SendEvent",
+                              "arguments": [
+                                " ",
+                                "previous"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "width": "100vw",
+              "height": "100vh",
+              "position": "absolute",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "id": "waitingContainer",
+              "left": 0,
+              "bottom": 0,
+              "items": [
+                {
+                  "type": "AlexaProgressDots",
+                  "dotSize": "72dp",
+                  "componentId": "largeDotsId",
+                  "spacing": "@spacingMedium"
+                }
+              ]
+            },
+            {
+              "type": "Text",
+              "id": "spokenTextId",
+              "text": "${payload.videoplayerData.properties.spokenText}",
+              "speech": "${payload.videoplayerData.properties.speech}",
+              "width": "0",
+              "height": "0"
+            }
+          ]
+        }
+      ]
+    },
+    "onMount": [
+      {
+        "type": "Sequential",
+        "delay": 200,
+        "commands": [
+          {
+            "type": "SpeakItem",
+            "componentId": "spokenTextId"
+          },
+          {
+            "type": "ControlMedia",
+            "componentId": "videoPlayer",
+            "command": "play"
+          }
+        ]
+      }
+    ],
+    "commands": {
+      "showOverlayShortly": {
+        "parameters": [
+          {
+            "name": "delay",
+            "type": "number",
+            "default": 0
+          }
+        ],
+        "commands": [
+          {
+            "type": "Sequential",
+            "delay": "${delay}",
+            "commands": [
+              {
+                "type": "SetValue",
+                "componentId": "overlayContainer",
+                "property": "display",
+                "value": "normal"
+              },
+              {
+                "type": "SetFocus",
+                "componentId": "alexaPlayPauseToggleButton"
+              },
+              {
+                "type": "SetValue",
+                "componentId": "overlayContainer",
+                "property": "display",
+                "value": "invisible",
+                "delay": 3000
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }

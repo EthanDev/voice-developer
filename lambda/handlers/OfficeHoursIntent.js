@@ -22,7 +22,7 @@ async function OfficeHoursIntent(handlerInput) {
             "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
             "index": `${(new Date(officeHoursData[i].fields.Published)).toDateString()}`,
             "primaryImageSource": `${officeHoursData[i].fields.Thumbnail[0].url}`,
-            "id": 67177,
+            "id": officeHoursData[i].fields.RecordId,
             "type": "Episode"
           };
         officeHoursList.push(videoObject);
