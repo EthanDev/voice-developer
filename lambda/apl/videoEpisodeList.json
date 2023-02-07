@@ -232,7 +232,7 @@
                     {
                       "type": "SetValue",
                       "property": "hintText",
-                      "value": "Try \"Alexa, Show The ${payload.templateData.properties.items[0].type}: ${payload.templateData.properties.items[Time.seconds(localTime/payload.templateData.properties.items.length) % payload.templateData.properties.items.length].name}\"",
+                      "value": "Try \"Alexa, show the ${payload.templateData.properties.items[0].type}: ${payload.templateData.properties.items[0].index}\"",
                       "componentId": "hint",
                       "screenLock": false,
                       "delay": 0

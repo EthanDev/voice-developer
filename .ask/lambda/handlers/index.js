@@ -16,6 +16,7 @@ const SSMLIntent = require("./SSMLIntent");
 const SoundEffectIntent = require("./SoundEffectIntent");
 const SpeechconIntent = require("./SpeechconIntent");
 const StopIntent = require("./StopIntent");
+const UserEventRequest = require("./UserEventRequest");
 
 
 module.exports = {
@@ -36,5 +37,6 @@ module.exports = {
     SSMLIntent,
     SoundEffectIntent,
     SpeechconIntent,
-    StopIntent
+    StopIntent,
+    UserEventRequest
 };

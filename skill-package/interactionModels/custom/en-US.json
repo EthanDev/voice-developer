@@ -53,7 +53,13 @@
                         "{answer}",
                         "what is {answer}",
                         "tell me about {answer}",
-                        "teach me something new"
+                        "teach me something new",
+                        "how can I {answer}",
+                        "how do I {answer}",
+                        "how do I do {answer}",
+                        "where can I {answer}",
+                        "when is {answer}",
+                        "who is {answer}"
                     ]
                 },
                 {
@@ -68,8 +74,17 @@
                 },
                 {
                     "name": "OfficeHoursIntent",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE"
+                        }
+                    ],
                     "samples": [
+                        "{date}",
+                        "play the episode from {date}",
+                        "play {date} office hours",
+                        "play office hours from {date}",
                         "play office hours",
                         "office hours",
                         "show me the last episode of office hours",
@@ -549,14 +564,15 @@
                 {
                     "name": "answer",
                     "values": [
-                        {"id": "recrFb7C5Cz96pvFb", "name": { "value": "Account Linking","synonyms": ["oauth", "oh auth", "o auth", "connect to another system", "user identity", "link accounts"]}},
-{"id": "recM3QJMmpb8RXDV2", "name": { "value": "Agencies and Tools","synonyms": []}},
-{"id": "recagiuKsRnvgiOLp", "name": { "value": "Alexa for Business","synonyms": ["business", "enterprise"]}},
+                        {"id": "rec6bl4UgffkIXkHF", "name": { "value": "Aaron Rubenson","synonyms": ["rubenson"]}},
+{"id": "recrFb7C5Cz96pvFb", "name": { "value": "Account Linking","synonyms": ["oauth", "oh auth", "o auth", "connect to another system", "user identity", "link accounts"]}},
+{"id": "recM3QJMmpb8RXDV2", "name": { "value": "Agencies","synonyms": ["marketing", "ad agency", "digital agency", "find an agency"]}},
 {"id": "recd4N7QEEBxhvfhI", "name": { "value": "Alexa Live","synonyms": []}},
+{"id": "recdQGeUCZvSWPAQa", "name": { "value": "Amanda Lange","synonyms": []}},
 {"id": "recCpVuDb98cpnPcv", "name": { "value": "Amazon Pay","synonyms": ["payments", "physical goods"]}},
 {"id": "recQ3r15hJiyjugcT", "name": { "value": "Announcements","synonyms": ["updates", "new features", "feature updates"]}},
 {"id": "recyJApDVvFa1OjzN", "name": { "value": "ARN","synonyms": ["amazon resource name"]}},
-{"id": "recARYORN4YdXSMrN", "name": { "value": "ASK CLI","synonyms": []}},
+{"id": "recARYORN4YdXSMrN", "name": { "value": "ASK CLI","synonyms": ["c.l.i."]}},
 {"id": "rec99RjvMnnmKrdNh", "name": { "value": "Audio Directives","synonyms": []}},
 {"id": "recE0eDuM0Fawe7wK", "name": { "value": "Audio Formats","synonyms": ["mp3", "wave file", "audio file", "audio encoding", "bit rate"]}},
 {"id": "recfrELJZLLixyxJW", "name": { "value": "AWS","synonyms": ["amazon web services", "a.w.s."]}},
@@ -584,22 +600,21 @@
 {"id": "reckxaYP5trK371QU", "name": { "value": "Display Directives","synonyms": []}},
 {"id": "recOUtvgJYIDwIFmi", "name": { "value": "Documentation","synonyms": []}},
 {"id": "rec7RLcOsEdGTVlYU", "name": { "value": "Dynamic Entities","synonyms": []}},
-{"id": "recL2HjcHYvjlZypK", "name": { "value": "Entertainment Capabilities","synonyms": []}},
 {"id": "rec0KeSNbfzrIjlLH", "name": { "value": "Entity Resolution","synonyms": []}},
 {"id": "reckEAXJm6p79UMmi", "name": { "value": "Flash Briefing","synonyms": []}},
 {"id": "recUrDrc4Eh0NCvSz", "name": { "value": "Forums","synonyms": []}},
 {"id": "recS4Huw1gbP4zzhY", "name": { "value": "Fund","synonyms": ["alexa fund"]}},
-{"id": "recYstR5T9Pfr3uCX", "name": { "value": "Gadgets","synonyms": []}},
-{"id": "recXLxePHwE18qBcN", "name": { "value": "Get Authors","synonyms": []}},
 {"id": "recjrmdgPfyXDrS0H", "name": { "value": "HTTPS","synonyms": []}},
 {"id": "rec6vngHkIXgvmMks", "name": { "value": "IAM","synonyms": []}},
-{"id": "recnjqs0DKVLGEsqD", "name": { "value": "In Skill Purchasing","synonyms": ["I.S.P.", "ISPs", "make money", "sell items", "sell products"]}},
+{"id": "recnjqs0DKVLGEsqD", "name": { "value": "In Skill Purchasing","synonyms": ["I.S.P.", "ISPs", "make money", "sell items", "sell products", "in-app purchasing"]}},
 {"id": "rec5MghnZQnz7crvR", "name": { "value": "Intent Confirmation","synonyms": []}},
 {"id": "recSqKNLL0tedUOfw", "name": { "value": "Intent History","synonyms": []}},
 {"id": "recdBVRAa6f6Kd26j", "name": { "value": "Java","synonyms": []}},
 {"id": "recutF3Q67HHCSupA", "name": { "value": "Jeff Bezos","synonyms": ["jeff", "bezos"]}},
 {"id": "recPHhieVloNRSAcS", "name": { "value": "Jeff Blankenburg","synonyms": ["Jeff", "Blankenburg"]}},
+{"id": "rec0wE7OvukpSoo8E", "name": { "value": "Kelly Wenzel","synonyms": ["Kelly", "Wenzel"]}},
 {"id": "recmvbklNr9RRir8E", "name": { "value": "Lambda","synonyms": ["serverless"]}},
+{"id": "rechV80qzJEWfLdob", "name": { "value": "Learning Lab","synonyms": ["a.l.l."]}},
 {"id": "reczEUklnYUFPFbKW", "name": { "value": "List Events","synonyms": []}},
 {"id": "recqqyv8DqCFlD5L2", "name": { "value": "Meetups","synonyms": []}},
 {"id": "recywCGM2IUHE1AhP", "name": { "value": "Metrics Dashboard","synonyms": ["analytics", "metrics", "user data"]}},
@@ -607,6 +622,7 @@
 {"id": "recjzsnEG28gdaTxi", "name": { "value": "Node SDK","synonyms": []}},
 {"id": "rec3t2mZbR2UMW2El", "name": { "value": "Node.js","synonyms": []}},
 {"id": "recpucg76cVrV8JgS", "name": { "value": "Notifications","synonyms": []}},
+{"id": "recKKcXLfJjzWttzU", "name": { "value": "Paid Skills","synonyms": []}},
 {"id": "recQE5VKu9nbpnluH", "name": { "value": "Permissions","synonyms": []}},
 {"id": "recNYOnDcjHN7jF0W", "name": { "value": "Persistence","synonyms": ["save data", "session data", "save session", "persist", "database", "dynamo db"]}},
 {"id": "recCtzIEBFg9kknuC", "name": { "value": "Phonemes","synonyms": ["phonetic spelling", "phonetics"]}},
@@ -622,17 +638,15 @@
 {"id": "reck0cggOFz3GKa4i", "name": { "value": "Slot Confirmation","synonyms": ["confirm slot"]}},
 {"id": "recLHJu0DtdJICLhg", "name": { "value": "Slot Elicitation","synonyms": ["elicit slot"]}},
 {"id": "rec6z6M4x1ywlyoEh", "name": { "value": "SMAPI","synonyms": ["skill management api"]}},
-{"id": "rec8IHDzhvsM6qjAN", "name": { "value": "Smart Home","synonyms": []}},
-{"id": "recCnq3pUJmVBXhQP", "name": { "value": "Smart Home Camera Control","synonyms": []}},
-{"id": "rec8L0JKAaMd0XHEu", "name": { "value": "Smart Home Skill API","synonyms": []}},
 {"id": "recFq7Pa1dX8U99rH", "name": { "value": "Speechcons","synonyms": ["speechcon", "speech con"]}},
 {"id": "recYds82pZzrqf3m5", "name": { "value": "Spoken Languages","synonyms": []}},
-{"id": "recXeDCTcrVha8OBx", "name": { "value": "Starting a Skill","synonyms": []}},
+{"id": "recXeDCTcrVha8OBx", "name": { "value": "Getting Started","synonyms": ["starting a skill"]}},
 {"id": "recbRzXOFIxzZJDKK", "name": { "value": "Text Messaging","synonyms": ["sms", "sns"]}},
 {"id": "recgPaxUc3EQbx0gg", "name": { "value": "Training Videos","synonyms": []}},
 {"id": "recDHAWZS2aw6PwmC", "name": { "value": "Tutorials","synonyms": []}},
 {"id": "recZxAQ5D7ZFPgWNy", "name": { "value": "Upcoming Events","synonyms": []}},
 {"id": "recUN8FvhWbJd6Ot5", "name": { "value": "Voice Design","synonyms": []}},
+{"id": "recKHwcs8HLg93ND2", "name": { "value": "Web API for Games","synonyms": []}},
 {"id": "recuzKWcxGPfdB9cc", "name": { "value": "Webinars","synonyms": []}},
 {"id": "rec7JXZVhsXNJ4gAo", "name": { "value": "Whisper Mode","synonyms": ["whisper"]}}
                     ]
@@ -670,7 +684,7 @@
                     "values": [
                         {"name": {"value": "none","synonyms": ["zero"]}},
                         {"name": {"value": "x-weak","synonyms": ["ex weak", "extra weak"]}},
-                        {"name": {"value": "weak","synonyms": ["week"]}},
+                        {"name": {"value": "weak","synonyms": []}},
                         {"name": {"value": "medium","synonyms": ["normal", "standard"]}},
                         {"name": {"value": "strong","synonyms": ["strong"]}},
                         {"name": {"value": "x-strong","synonyms": ["ex strong", "extra strong"]}}
