@@ -16,12 +16,35 @@ async function LaunchRequest(handlerInput) {
     data.getRandomSpeech("RECOMMENDATION", helper.getLocale(handlerInput))
   ]);
 
+  //data.getMostRecentAnswers()
+
+  // console.log(answers[0].fields.AlexaSlotValues.replace(/^,+|,+$/g, ''));
+  // console.log(JSON.parse(answers[0].fields.AlexaSlotValues.replace(/^,+|,+$/g, '')))
+
+  // //DYNAMIC ENTITIES UPDATE FOR THE ANSWER SLOT.  THIS ALLOWS DATA ENTRY WITHOUT CODE UPDATES TO MODIFY THE ANSWER DATA VALUES.
+  // var answerArray = [];
+  // for (var i = 0;i<answers.length;i++) {
+  //   var object = answers[i].fields.AlexaSlotValues.replace(/^,+|,+$/g, '');
+  //   answerArray.push(JSON.parse(object));
+  // }
+
+  // let dynamicEntitiesDirective = {
+  //   type: "Dialog.UpdateDynamicEntities",
+  //   updateBehavior: "REPLACE",
+  //   types: [
+  //     {
+  //       name: "answer",
+  //       values: answerArray
+  //     }
+  //   ]
+  // };
+
   //console.log(clocktest);
 
   return handlerInput.responseBuilder
     .speak(`${speakOutput} ${recommendation} ${actionQuery}`)
     .reprompt(actionQuery)
-    //.addDirective(clocktest) //"ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvqxyz 1234567890 !@#$%^&*()",
+    //.addDirective(dynamicEntitiesDirective)
     .getResponse();
 }
 

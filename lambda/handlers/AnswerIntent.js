@@ -49,7 +49,7 @@ async function AnswerIntent(handlerInput) {
         speakOutput = `I heard you say ${spokenAnswer}, and I found ${resolvedAnswer.length} options for you. Did you want ${optionList}? `;
     }
     var achievementSpeech = await data.checkAnswerAchievements(handlerInput);
-    speakOutput += achievementSpeech;
+    speakOutput = achievementSpeech + speakOutput;
 
     return handlerInput.responseBuilder
         .speak(`${speakOutput}`)

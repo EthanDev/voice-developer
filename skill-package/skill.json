@@ -99,42 +99,7 @@
     },
     "manifestVersion": "1.0",
     "permissions": [
-      {
-        "name": "alexa::devices:all:notifications:write"
-      },
-      {
-        "name": "alexa::devices:all:address:full:read"
-      },
-      {
-        "name": "alexa::profile:name:read"
-      },
-      {
-        "name": "alexa::profile:email:read"
-      },
-      {
-        "name": "alexa::profile:mobile_number:read"
-      },
-      {
-        "name": "alexa::household:lists:read"
-      },
-      {
-        "name": "alexa::household:lists:write"
-      },
-      {
-        "name": "alexa::alerts:reminders:skill:readwrite"
-      },
-      {
-        "name": "alexa::devices:all:geolocation:read"
-      },
-      {
-        "name": "alexa::person_id:read"
-      },
-      {
-        "name": "alexa::authenticate:2:mandatory"
-      },
-      {
-        "name": "alexa::alerts:timers:skill:readwrite"
-      }
+      
     ],
     "privacyAndCompliance": {
       "allowsPurchases": false,
@@ -160,11 +125,11 @@
         "en-US": {
           "description": "Sample Full Description",
           "examplePhrases": [
-            "Alexa open hello world",
-            "hello",
-            "help"
+            "Alexa open Voice Developer",
+            "tell me about alexa live",
+            "give me a random speechcon"
           ],
-          "name": "voice-developer",
+          "name": "Voice Developer",
           "summary": "Sample Short Description"
         }
       },

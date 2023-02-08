@@ -5,6 +5,7 @@ const checkSoundEffectAchievements = require("./checkSoundEffectAchievements");
 const checkSpeechconAchievements = require("./checkSpeechconAchievements");
 const getAnswer = require("./getAnswer");
 const getNews = require("./getNews");
+const getMostRecentAnswers = require("./getMostRecentAnswers");
 const getMostRecentOfficeHoursVideos = require("./getMostRecentOfficeHoursVideos");
 const getRandomAnswer = require("./getRandomAnswer");
 const getRandomSoundEffect = require("./getRandomSoundEffect");
@@ -31,6 +32,7 @@ module.exports = {
     checkSpeechconAchievements,
     getAnswer,
     getNews,
+    getMostRecentAnswers,
     getMostRecentOfficeHoursVideos,
     getRandomAnswer,
     getRandomSoundEffect,
