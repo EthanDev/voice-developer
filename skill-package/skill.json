@@ -98,9 +98,7 @@
       }
     },
     "manifestVersion": "1.0",
-    "permissions": [
-      
-    ],
+    "permissions": [],
     "privacyAndCompliance": {
       "allowsPurchases": false,
       "containsAds": false,
