@@ -17,8 +17,9 @@ async function LaunchRequest(handlerInput) {
   ]);
 
   //THIS COMMENTED CODE IS TO USE DYNAMIC ENTITIES TO UPDATE THE Answer SLOT.
-  //ALSO TRIED USING CATALOGS, BUT IT IS WAY TOO COMPLICATED.  amzn1.ask.interactionModel.catalog.cfd3a8ff-db18-43dc-9bff-d2937b7fcf81
-  //data.getMostRecentAnswers()
+  //ALSO TRIED USING CATALOGS, BUT IT IS WAY TOO COMPLICATED SO FAR.  amzn1.ask.interactionModel.catalog.cfd3a8ff-db18-43dc-9bff-d2937b7fcf81
+  //TODO: Need to figure out how to get an access token for a SMAPI call to last longer than 1 second in Zapier.  https://zapier.com/editor/182304596
+  await data.getMostRecentAnswers(handlerInput)
 
   // console.log(answers[0].fields.AlexaSlotValues.replace(/^,+|,+$/g, ''));
   // console.log(JSON.parse(answers[0].fields.AlexaSlotValues.replace(/^,+|,+$/g, '')))
