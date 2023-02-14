@@ -22,8 +22,8 @@ async function NewsIntent(handlerInput) {
             newsItemsForAPL[i] = {
                 itemType: "notification",
                 id: `NewsItem${i}`,
-                primaryText: newsItems[i].fields.VoiceBody,
-                secondaryText: newsItems[i].fields.VoiceHeadline,
+                primaryText: newsItems[i].fields.CardHeadline,
+                secondaryText: newsItems[i].fields.CardBody,
                 tertiaryText: newsItems[i].fields.Link,
                 //TODO: Create a default news item image.  Pull an image from the database if it exists.    
                 imageSource: "https://d2o906d8ln7ui1.cloudfront.net/images/md_brie.png"

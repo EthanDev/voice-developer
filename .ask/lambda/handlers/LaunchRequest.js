@@ -16,6 +16,8 @@ async function LaunchRequest(handlerInput) {
     data.getRandomSpeech("RECOMMENDATION", helper.getLocale(handlerInput))
   ]);
 
+  //THIS COMMENTED CODE IS TO USE DYNAMIC ENTITIES TO UPDATE THE Answer SLOT.
+  //ALSO TRIED USING CATALOGS, BUT IT IS WAY TOO COMPLICATED.  amzn1.ask.interactionModel.catalog.cfd3a8ff-db18-43dc-9bff-d2937b7fcf81
   //data.getMostRecentAnswers()
 
   // console.log(answers[0].fields.AlexaSlotValues.replace(/^,+|,+$/g, ''));

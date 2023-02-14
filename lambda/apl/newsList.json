@@ -1,75 +1,14 @@
 {
     "type": "APL",
     "version": "1.4",
-    "onMount": [
-      {
-        "type": "Sequential",
-        "commands": [
-          {
-            "type": "SpeakItem",
-            "componentId": "NewsItem1"
-          },
-          {
-            "type": "SpeakItem",
-            "componentId": "NewsItem2"
-          },
-          {
-            "type": "SpeakItem",
-            "componentId": "NewsItem3"
-          },
-          {
-            "type": "SpeakItem",
-            "componentId": "NewsItem4"
-          },
-          {
-            "type": "SpeakItem",
-            "componentId": "NewsItem5"
-          }
-        ]
-      }
-    ],
     "import": [
       {
         "name": "alexa-layouts",
         "version": "1.2.0"
       }
     ],
-    "graphics": {
-      "gradientBackground": {
-        "type": "AVG",
-        "version": "1.2",
-        "height": 100,
-        "width": 100,
-        "scaleTypeWidth": "stretch",
-        "scaleTypeHeight": "stretch",
-        "resources": {
-          "gradients": {
-            "grayGradient": {
-              "inputRange": [
-                0,
-                1
-              ],
-              "colorRange": [
-                "#2B3A4D",
-                "#0B0F13"
-              ],
-              "type": "radial",
-              "units": "boundingBox",
-              "centerX": 1,
-              "centerY": 0,
-              "radius": 1.6
-            }
-          }
-        },
-        "items": [
-          {
-            "type": "path",
-            "pathData": "M0,0 L${width},0 L${width},${height} L0,${height}",
-            "fill": "@grayGradient",
-            "fillTransform": "scale(0.5)"
-          }
-        ]
-      }
+    "settings": {
+      "supportsResizing": true
     },
     "mainTemplate": {
       "parameters": [
@@ -82,22 +21,13 @@
           "height": "100%",
           "items": [
             {
-              "type": "VectorGraphic",
-              "source": "gradientBackground",
-              "width": "100%",
-              "height": "100%",
-              "scale": "fill",
-              "position": "absolute"
-            },
-            {
               "type": "AlexaHeader",
-              "headerBackButton": true,
+              "headerBackButton": false,
               "headerBackButtonAccessibilityLabel": "back",
-              "headerTitle": "Alexa Developer News"
+              "headerTitle": "What's New"
             },
             {
               "type": "Sequence",
-              "id": "NewsList",
               "width": "100%",
               "height": "80%",
               "data": "${itemList.items}",
@@ -125,11 +55,9 @@
                   "when": "${data.itemType == 'notification'}",
                   "primaryText": "${data.primaryText}",
                   "secondaryText": "${data.secondaryText}",
-                  "tertiaryText": "${data.tertiaryText}",
-                  "secondaryTextPosition": "top",
-                  "tertiaryTextPosition": "bottom",
+                  "secondaryTextPosition": "bottom",
                   "touchForward": true,
-                  "imageThumbnailSource": "${data.imageSource}",
+                  "imageThumbnailSource": "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${data.tertiaryText}",
                   "hideOrdinal": true,
                   "hideDivider": "${data.itemBeforeSubHeading}"
                 }
