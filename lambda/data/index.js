@@ -11,9 +11,11 @@ const getRandomAnswer = require("./getRandomAnswer");
 const getRandomSoundEffect = require("./getRandomSoundEffect");
 const getRandomSpeech = require("./getRandomSpeech");
 const getRandomSpeechcon = require("./getRandomSpeechcon");
+const getRandomSpeechconByCategory = require("./getRandomSpeechconByCategory");
 const getSoundEffect = require("./getSoundEffect");
 const getUserRecord = require("./getUserRecord");
 const getVideo = require("./getVideo");
+const getVideoByDate = require("./getVideoByDate");
 const saveMissedAnswer = require("./saveMissedAnswer");
 const saveUserAnswer = require("./saveUserAnswer");
 const updateUserDomain = require("./updateUserDomain");
@@ -38,9 +40,11 @@ module.exports = {
     getRandomSoundEffect,
     getRandomSpeech,
     getRandomSpeechcon,
+    getRandomSpeechconByCategory,
     getSoundEffect,
     getUserRecord,
     getVideo,
+    getVideoByDate,
     saveMissedAnswer,
     saveUserAnswer,
     updateUserDomain,

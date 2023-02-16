@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 async function SpeechconIntent(handlerInput) {
 //TODO: Add the ability to get a random speechcon from a specific type, like "celebration" or "disappointment."
     var speechconResult = helper.getResolvedWords(handlerInput, "speechcon");
+    var resolvedCategory = helper.getResolvedWords(handlerInput, "category");
     var speechcon = "";
     var speakOutput = "";
     var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));;

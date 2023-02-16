@@ -2,10 +2,10 @@ const helper = require("../helper");
 const data = require("../data");
 const fetch = require("node-fetch");
 
-//TODO: Make sure that your list of voices in the Interaction Model matches the entire list on https://developer.amazon.com/en-US/docs/alexa/custom-skills/speech-synthesis-markup-language-ssml-reference.html#voice
-
-
 async function PollyVoiceIntent(handlerInput) {
+
+    //TODO: Don't show the SSML syntax when the user is going back to Alexa's voice.
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     var spokenVoice = helper.getSpokenWords(handlerInput, "voice");
     var resolvedVoice = helper.getResolvedWords(handlerInput, "voice");
     var speakOutput = "";
@@ -26,7 +26,6 @@ async function PollyVoiceIntent(handlerInput) {
             data.getRandomSpeech("VOICECONFIRMATION", helper.getLocale(handlerInput)),
             data.updateUserVoice(handlerInput, voiceValue)
         ]);
-        const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
         sessionAttributes.user.PollyVoice = voiceValue;
         if (voice != normal) {
             speakOutput = `<voice name="${voice}">${voiceConfirmation.replace("VOICE", voice)} ${actionQuery}</voice>`;
@@ -37,14 +36,13 @@ async function PollyVoiceIntent(handlerInput) {
             speakOutput = `${voiceConfirmation.replace("VOICE", voice)} ${actionQuery}`;
             speakOutput = await data.awardSpecificAchievement("VOICEALEXA", handlerInput) + " " + speakOutput;
         }
-        
     }
 
     return handlerInput.responseBuilder
         .speak(`${speakOutput}`)
         .reprompt(actionQuery)
         //TODO: APL!
-        //.withSimpleCard(`Speechcon: ${speechcon}`, `SSML SYNTAX:\n<say-as interpret-as='interjection'>${speechcon}</say-as>`)
+        .withSimpleCard(`SSML VOICE TAG FOR ${sessionAttributes.user.PollyVoice}`, `<voice name="${sessionAttributes.user.PollyVoice}">...</voice>`)
         .getResponse();
 }
 

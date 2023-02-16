@@ -25,12 +25,20 @@
                         {
                             "name": "speechcon",
                             "type": "speechcon"
+                        },
+                        {
+                            "name": "category",
+                            "type": "speechcon_category"
                         }
                     ],
                     "samples": [
                         "say {speechcon}",
                         "let me hear {speechcon}",
                         "give me a speechcon",
+                        "give me a {category} speechcon",
+                        "give me a speechcon that means {category}",
+                        "{category}",
+                        "let me hear a {category}",
                         "give me a random speechcon",
                         "pick a speechcon",
                         "let me hear a speechcon",
@@ -559,6 +567,34 @@
                         {"id": "recdErd1G6xKtX1d1", "name": { "value": "zoinks","synonyms": []}},
                         {"id": "recOyr4K4iDQVvYex", "name": { "value": "zoom","synonyms": []}},
                         {"id": "recnCh8EsL15mgbQp", "name": { "value": "zowie","synonyms": []}}
+                    ]
+                },
+                {
+                    "name": "speechcon_category",
+                    "values": [
+                        {"id": "rec2k94H5xqNz0bkS", "name": { "value": "Animal Sound"}},
+                        {"id": "recbCSPHfFMpbGYi1", "name": { "value": "Hello"}},
+                        {"id": "rec8Lsw2gvIpTCvxH", "name": { "value": "Celebration"}},
+                        {"id": "reclgpeu7ZbJ99dQD", "name": { "value": "Disappointment"}},
+                        {"id": "recsvK11ZcrqbefeM", "name": { "value": "Frustration"}},
+                        {"id": "rectT7bqYY30MdyTo", "name": { "value": "Goodbye"}},
+                        {"id": "recTERyDbDkNEKjux", "name": { "value": "Laugh"}},
+                        {"id": "recfyZx3GJpQm8j5V", "name": { "value": "Surprise"}},
+                        {"id": "recFOKg1tA3jniiok", "name": { "value": "No"}},
+                        {"id": "rec6ly1UDijJQLsEd", "name": { "value": "Yes"}},
+                        {"id": "recFl2fQxxTHhECkv", "name": { "value": "Darn"}},
+                        {"id": "recvo1jDv9Vz8JwqP", "name": { "value": "Thank You"}},
+                        {"id": "recezvSDuXpSDMfGp", "name": { "value": "Kidding"}},
+                        {"id": "recZ3T4pB8DczpNKA", "name": { "value": "Agreement"}},
+                        {"id": "recfTaHQC4bv1PzwF", "name": { "value": "Pirate"}},
+                        {"id": "recWG6VWnt04WAACa", "name": { "value": "Start"}},
+                        {"id": "recsvPdYtAgZ1tAMo", "name": { "value": "Excuse Me"}},
+                        {"id": "recTy7nGXICS8iVRw", "name": { "value": "Disgust"}},
+                        {"id": "recYJE2X96OIHmLpf", "name": { "value": "Warning"}},
+                        {"id": "recIJEZiYKc4VD7GM", "name": { "value": "Confused"}},
+                        {"id": "recj3ABGKBZzBUF5I", "name": { "value": "Apology"}},
+                        {"id": "recSVw0FzCC478uJ9", "name": { "value": "Insulted"}},
+                        {"id": "reca16s34OU4LWKOY", "name": { "value": "Relief"}}
                     ]
                 },
                 {

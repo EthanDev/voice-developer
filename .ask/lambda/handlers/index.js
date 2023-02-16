@@ -8,6 +8,7 @@ const HelpIntent = require("./HelpIntent");
 const LaunchRequest = require("./LaunchRequest");
 const NewsIntent = require("./NewsIntent");
 const OfficeHoursIntent = require("./OfficeHoursIntent");
+const OfficeHoursPlay = require("./OfficeHoursPlay");
 const PollyVoiceIntent = require("./PollyVoiceIntent");
 const ProsodyRateIntent = require("./ProsodyRateIntent");
 const RepeatIntent = require("./RepeatIntent");
@@ -30,6 +31,7 @@ module.exports = {
     LaunchRequest,
     NewsIntent,
     OfficeHoursIntent,
+    OfficeHoursPlay,
     PollyVoiceIntent,
     ProsodyRateIntent,
     RepeatIntent,

@@ -4,19 +4,29 @@ const fetch = require("node-fetch");
 
 async function SpeechconIntent(handlerInput) {
 //TODO: Add the ability to get a random speechcon from a specific type, like "celebration" or "disappointment."
-    var speechconResult = helper.getResolvedWords(handlerInput, "speechcon");
+    var resolvedSpeechcon = helper.getResolvedWords(handlerInput, "speechcon");
+    var spokenCategory = helper.getSpokenWords(handlerInput, "category");
+    var resolvedCategory = helper.getResolvedWords(handlerInput, "category");
     var speechcon = "";
     var speakOutput = "";
     var actionQuery = await data.getRandomSpeech("ACTIONQUERY", helper.getLocale(handlerInput));;
 
-    if (speechconResult === undefined) {
+    if (resolvedSpeechcon != undefined && resolvedSpeechcon.length > 0) {
+        speechcon = resolvedSpeechcon[0].value.name;
+    }
+    else if (resolvedCategory.length > 0) {
+        speakOutput = `Here's a random speechcon from the ${resolvedCategory[0].value.name} category. `;
+        speechcon = await data.getRandomSpeechconByCategory(helper.getLocale(handlerInput), resolvedCategory[0].value.id);
+    }
+    else if (spokenCategory != undefined) {
+        speakOutput = `I'm sorry, I don't have any speechcons in the ${spokenCategory} category.  You can try category names like Disappointment, Celebration, Animal Sounds, or even Pirate, though. `;
         speechcon = await data.getRandomSpeechcon(helper.getLocale(handlerInput));
-        speakOutput = `<say-as interpret-as='interjection'>${speechcon}</say-as><break time='.5s'/>`;
     }
-    else if (speechconResult.length > 0) {
-        speechcon = speechconResult[0].value.name;
-        speakOutput = `<say-as interpret-as='interjection'>${speechcon}<break time='.5s'/></say-as> `;
+    else if (resolvedSpeechcon === undefined) {
+        speechcon = await data.getRandomSpeechcon(helper.getLocale(handlerInput));
     }
+    
+    speakOutput += `<say-as interpret-as='interjection'>${speechcon}</say-as>. `;
 
     var achievementSpeech = await data.updateUserSpeechconCount(handlerInput, 1);
     speakOutput += achievementSpeech;

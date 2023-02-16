@@ -3,44 +3,54 @@ const helper = require("../helper");
 
 //TODO: Play a video when the user selects one by tap or voice.
 //TODO: Make sure the video interface includes play/pause, FF, RW, and a back button.
+//TODO: Allow a user to specify a date for a specific video to play.
 
 async function OfficeHoursIntent(handlerInput) {
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     var speakOutput = "This is the Office Hours intent."
     var actionQuery = "This is the action query.";
+    var spokenDate = helper.getSpokenWords(handlerInput, "date");
 
-    var apl = require("../apl/videoEpisodeList.json");
-    var datasource = require("../apl/videoEpisodeListDataSource.json");
+    if (spokenDate != undefined) {
+        var video = await data.getVideoByDate("January 3");
+        console.log(video);
+    }
+    else {
+        var apl = require("../apl/videoEpisodeList.json");
+        var datasource = require("../apl/videoEpisodeListDataSource.json");
 
-    var officeHoursData = await data.getMostRecentOfficeHoursVideos(10);
-    var officeHoursList = [];
+        var officeHoursData = await data.getMostRecentOfficeHoursVideos(10);
+        var officeHoursList = [];
 
-    for (var i = 0;i<officeHoursData.length;i++) {
-        var videoObject = {
-            "premiereDate": `${officeHoursData[i].fields.Guests}`,
-            "name": `${officeHoursData[i].fields.Title}`,
-            "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
-            "index": `${(new Date(officeHoursData[i].fields.Published)).toDateString()}`,
-            "primaryImageSource": `${officeHoursData[i].fields.Thumbnail[0].url}`,
-            "id": officeHoursData[i].fields.RecordId,
-            "type": "Episode"
-          };
-        officeHoursList.push(videoObject);
+        for (var i = 0;i<officeHoursData.length;i++) {
+            var videoObject = {
+                "premiereDate": `${officeHoursData[i].fields.Guests}`,
+                "name": `${officeHoursData[i].fields.Title}`,
+                "backdropImageSource": "/Items/67165/Images/backdrop?maxWidth=1200&amp;maxHeight=800&amp;quality=90",
+                "index": `${(new Date(officeHoursData[i].fields.Published)).toDateString()}`,
+                "primaryImageSource": `${officeHoursData[i].fields.Thumbnail[0].url}`,
+                "id": officeHoursData[i].fields.RecordId,
+                "type": "Episode"
+            };
+            officeHoursList.push(videoObject);
+        }
+
+        datasource.templateData.properties.items = officeHoursList;
+
+        var directive = {
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            token: '[SkillProvidedToken]',
+            version: '1.0',
+            document: apl,
+            datasources: datasource
+        }
     }
 
-    datasource.templateData.properties.items = officeHoursList;
-
-    var directive = {
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: '[SkillProvidedToken]',
-        version: '1.0',
-        document: apl,
-        datasources: datasource
-    }
+    
 
     return handlerInput.responseBuilder
         .speak(`${speakOutput} ${actionQuery}`)
-        .addDirective(directive)
+        //.addDirective(directive)
         .reprompt(actionQuery)
         .getResponse();
 }

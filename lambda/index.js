@@ -2,7 +2,7 @@ const Alexa = require('ask-sdk-core');
 const handlers = require(`./handlers`);
 const data = require(`./data`);
 const helper = require("./helper");
-//TODO: Connect this to the database so that we pull the latest episode.
+//TODO: Add an intent that lets you check your achievement score, and your position on the leaderboard.
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
