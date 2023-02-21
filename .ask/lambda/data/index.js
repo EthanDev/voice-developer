@@ -11,6 +11,7 @@ const getRandomAnswer = require("./getRandomAnswer");
 const getRandomSoundEffect = require("./getRandomSoundEffect");
 const getRandomSpeech = require("./getRandomSpeech");
 const getRandomSpeechcon = require("./getRandomSpeechcon");
+const getRandomSpeechconByCategory = require("./getRandomSpeechconByCategory");
 const getSoundEffect = require("./getSoundEffect");
 const getUserRecord = require("./getUserRecord");
 const getVideo = require("./getVideo");
@@ -39,6 +40,7 @@ module.exports = {
     getRandomSoundEffect,
     getRandomSpeech,
     getRandomSpeechcon,
+    getRandomSpeechconByCategory,
     getSoundEffect,
     getUserRecord,
     getVideo,

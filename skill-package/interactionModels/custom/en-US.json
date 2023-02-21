@@ -244,6 +244,17 @@
                         "change the prosody rate",
                         "set the prosody rate"
                     ]
+                },
+                {
+                    "name": "ScoreboardIntent",
+                    "slots": [],
+                    "samples": [
+                        "where am I in the standings",
+                        "what place am I in",
+                        "scoreboard",
+                        "leaderboard",
+                        "what are the standings"
+                    ]
                 }
             ],
             "types": [

@@ -12,6 +12,7 @@ const OfficeHoursPlay = require("./OfficeHoursPlay");
 const PollyVoiceIntent = require("./PollyVoiceIntent");
 const ProsodyRateIntent = require("./ProsodyRateIntent");
 const RepeatIntent = require("./RepeatIntent");
+const ScoreboardIntent = require("./ScoreboardIntent");
 const SessionResumedRequest = require("./SessionResumedRequest");
 const SSMLIntent = require("./SSMLIntent");
 const SoundEffectIntent = require("./SoundEffectIntent");
@@ -35,6 +36,7 @@ module.exports = {
     PollyVoiceIntent,
     ProsodyRateIntent,
     RepeatIntent,
+    ScoreboardIntent,
     SessionResumedRequest,
     SSMLIntent,
     SoundEffectIntent,

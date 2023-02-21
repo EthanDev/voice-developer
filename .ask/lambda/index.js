@@ -148,6 +148,16 @@ const RepeatIntentHandler = {
     }
 };
 
+const ScoreboardIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ScoreboardIntent';
+    },
+    handle(handlerInput) {
+        return handlers.ScoreboardIntent(handlerInput);
+    }
+};
+
 const SessionResumedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionResumedRequest'
@@ -157,6 +167,7 @@ const SessionResumedRequestHandler = {
     }
 };
 
+//TODO: Make sure that all of the SSML properties are represented by this intent response.
 const SSMLIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -290,6 +301,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         PollyVoiceIntentHandler,
         ProsodyRateIntentHandler,
         BreakIntentHandler,
+        ScoreboardIntentHandler,
         EmotionIntentHandler,
         EmphasisIntentHandler,
         SSMLIntentHandler,
